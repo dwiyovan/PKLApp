@@ -10,11 +10,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.regex.Pattern;
 
-import Adapter.PatternEditableBuilder;
+import com.example.pklapp.Adapter.PatternEditableBuilder;
 
 public class StartActivity extends AppCompatActivity {
 
@@ -45,7 +44,7 @@ public class StartActivity extends AppCompatActivity {
                 jmlIjazah.setAdapter(pesanAdapter);
                 jmlTrans.setAdapter(pesanAdapter);
 
-                Toast.makeText(StartActivity.this,"test",Toast.LENGTH_SHORT).show();
+
 
                 popdialog.setView(mview);
                 AlertDialog dialog=popdialog.create();
