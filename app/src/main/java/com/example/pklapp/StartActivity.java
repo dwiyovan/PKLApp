@@ -45,6 +45,8 @@ public class StartActivity extends AppCompatActivity {
                 jmlIjazah.setAdapter(pesanAdapter);
                 jmlTrans.setAdapter(pesanAdapter);
 
+                Toast.makeText(StartActivity.this,"test",Toast.LENGTH_SHORT).show();
+
                 popdialog.setView(mview);
                 AlertDialog dialog=popdialog.create();
                 dialog.show();
