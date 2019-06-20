@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">PKLApp</string>
+    <string name="form_legalisasi_online">Form Legalisasi Online</string>
+    <string name="pkl_app">PKL APP</string>
+    <string name="pesan_legalisir">Pesan Legalisir</string>
+    <string name="belum_upload_upload_disini">Belum upload? Upload disini</string>
+
+    <string-array name="jml">
+        <item>5</item>
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+    </string-array>
+</resources>

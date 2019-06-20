@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "478115811632",
+    "firebase_url": "https://pklapp-c0a25.firebaseio.com",
+    "project_id": "pklapp-c0a25",
+    "storage_bucket": "pklapp-c0a25.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:478115811632:android:f6af203b431e77d1",
+        "android_client_info": {
+          "package_name": "com.example.pklapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "478115811632-8nfl40lo3sa7km4s0lnqffgj1d4m1hns.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.pklapp",
+            "certificate_hash": "d0a66d28b1ed20a47e500beb4e0f9a2791ee1750"
+          }
+        },
+        {
+          "client_id": "478115811632-fmlgvi2nf94loknqcsee04sje2ogrurc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFwJ-AVxh6jPpcWOL8tmADGxf9hwAbQnQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "478115811632-fmlgvi2nf94loknqcsee04sje2ogrurc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
