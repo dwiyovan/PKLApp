@@ -25,7 +25,7 @@ public class StartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_start);
 
         pesan=findViewById(R.id.legalisir);
-        toRegister();
+
 
         pesan.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,8 +37,13 @@ public class StartActivity extends AppCompatActivity {
                 Spinner jmlTrans = findViewById(R.id.jumlah2);
                 pesan = findViewById(R.id.pesan_button);
 
+                popdialog.setView(mview);
+                AlertDialog dialog=popdialog.create();
+                dialog.show();
+
             }
         });
+
     }
 
     private void toRegister(){
