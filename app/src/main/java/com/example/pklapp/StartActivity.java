@@ -27,7 +27,7 @@ public class StartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_start);
 
         pesan=findViewById(R.id.legalisir);
-        toRegister();
+        toUpload();
 
 
         pesan.setOnClickListener(new View.OnClickListener() {
@@ -55,7 +55,7 @@ public class StartActivity extends AppCompatActivity {
 
     }
 
-    private void toRegister(){
+    private void toUpload(){
         TextView txt=(TextView)findViewById(R.id.register);
         txt.setText("Belum upload? Upload disini");
         new PatternEditableBuilder().
