@@ -41,8 +41,8 @@ public class StartActivity extends AppCompatActivity {
 
                 ArrayAdapter<String> pesanAdapter= new ArrayAdapter<String>(StartActivity.this,android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.jml));
                 pesanAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
-                jmlIjazah.setAdapter(pesanAdapter);
-                jmlTrans.setAdapter(pesanAdapter);
+                //jmlIjazah.setAdapter(pesanAdapter);
+                //jmlTrans.setAdapter(pesanAdapter);
 
 
 
