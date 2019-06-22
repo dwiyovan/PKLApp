@@ -1,4 +1,4 @@
-package Adapter;
+package com.example.pklapp.Adapter;
 
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;

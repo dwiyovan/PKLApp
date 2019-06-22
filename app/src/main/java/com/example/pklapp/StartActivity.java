@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import java.util.regex.Pattern;
 
-import Adapter.PatternEditableBuilder;
+import com.example.pklapp.Adapter.PatternEditableBuilder;
 
 public class StartActivity extends AppCompatActivity {
 
@@ -25,7 +25,6 @@ public class StartActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
-
         pesan=findViewById(R.id.legalisir);
         toUpload();
 
@@ -70,6 +69,7 @@ public class StartActivity extends AppCompatActivity {
                     }
                 }).into(txt);
     }
+
 
 
 }

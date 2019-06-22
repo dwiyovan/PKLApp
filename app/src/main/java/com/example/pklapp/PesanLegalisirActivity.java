@@ -7,14 +7,12 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
-import com.google.firebase.auth.FirebaseAuth;
 
 public class PesanLegalisirActivity extends AppCompatActivity {
 
     Spinner jmlIjazah, jmlTrans;
     Button pesan;
 
-    FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +30,6 @@ public class PesanLegalisirActivity extends AppCompatActivity {
         jmlTrans = findViewById(R.id.jumlah2);
         pesan = findViewById(R.id.pesan_button);
 
-        auth = FirebaseAuth.getInstance();
 
         ArrayAdapter<String> pesanAdapter= new ArrayAdapter<String>(PesanLegalisirActivity.this,android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.jml));
         pesanAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
