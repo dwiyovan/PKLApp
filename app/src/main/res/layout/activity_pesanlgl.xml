@@ -41,8 +41,10 @@
             android:layout_width="match_parent"
             android:layout_height="42dp"
             android:id="@+id/jumlah1"
+            android:entries="@array/jml"
             android:layout_marginTop="20dp"
             app:met_floatingLabel="normal"
+
             />
 
         <TextView
@@ -57,6 +59,7 @@
             android:id="@+id/jumlah2"
             android:layout_width="match_parent"
             android:layout_height="42dp"
+            android:entries="@array/jml"
             android:layout_marginTop="10dp"
             app:met_floatingLabel="normal"
             />
