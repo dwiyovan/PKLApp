@@ -4,8 +4,9 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/toolbar"
-    android:background="@color/colorPrimary"
+    android:background="@color/FacebookColor"
     android:elevation="4dp"
+    app:titleTextColor="#ffffffff"
     >
 
 

@@ -2,18 +2,18 @@ package com.example.pklapp;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
-
-
+import android.widget.Toast;
 
 import java.util.regex.Pattern;
+
 import com.example.pklapp.Adapter.PatternEditableBuilder;
 
 public class StartActivity extends AppCompatActivity {
@@ -40,7 +40,12 @@ public class StartActivity extends AppCompatActivity {
                 final Spinner jmlTrans = findViewById(R.id.jumlah2);
                 pesan = findViewById(R.id.pesan_button);
 
+                ArrayAdapter<String> pesanAdapter= new ArrayAdapter<String>(StartActivity.this,android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.jml));
+                pesanAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+                jmlIjazah.setAdapter(pesanAdapter);
+                jmlTrans.setAdapter(pesanAdapter);
 
+                Toast.makeText(StartActivity.this,"test",Toast.LENGTH_SHORT).show();
 
                 popdialog.setView(mview);
                 AlertDialog dialog=popdialog.create();
@@ -56,7 +61,7 @@ public class StartActivity extends AppCompatActivity {
         TextView txt=(TextView)findViewById(R.id.register);
         txt.setText("Belum upload? Upload disini");
         new PatternEditableBuilder().
-                addPattern(Pattern.compile("Disini"), Color.BLUE,
+                addPattern(Pattern.compile("Upload"), Color.BLUE,
                 new PatternEditableBuilder.SpannableClickedListener(){
                     @Override
                     public void onSpanClicked(String text) {
