@@ -5,10 +5,8 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -119,7 +117,7 @@ public class UploadActivity extends AppCompatActivity {
         });
 
         if (ContextCompat.checkSelfPermission(UploadActivity.this, android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-            if (Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.P) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                 requestPermissions(new String[]{android.Manifest.permission.CAMERA},
                         5);
             }
@@ -201,7 +199,7 @@ public class UploadActivity extends AppCompatActivity {
 
         ConvertImage = Base64.encodeToString(byteArray, Base64.DEFAULT);
 
-        class AsyncTaskUploadClass extends AsyncTask&lt;Void,Void,String&gt; {
+        class AsyncTaskUploadClass extends AsyncTask<Void,Void,String> {
 
             @Override
             protected void onPreExecute() {
@@ -227,7 +225,7 @@ public class UploadActivity extends AppCompatActivity {
 
                 ImageProcessClass imageProcessClass = new ImageProcessClass();
 
-                HashMap&lt;String,String&gt; HashMapParams = new HashMap&lt;String,String&gt;();
+                HashMap<String,String> HashMapParams = new HashMap<String,String>();
 
                 HashMapParams.put(ImageTag, GetImageNameFromEditText);
 
@@ -244,7 +242,7 @@ public class UploadActivity extends AppCompatActivity {
 
     public class ImageProcessClass{
 
-        public String ImageHttpRequest(String requestURL,HashMap&lt;String, String&gt; PData) {
+        public String ImageHttpRequest(String requestURL,HashMap<String, String> PData) {
 
             StringBuilder stringBuilder = new StringBuilder();
 
@@ -299,11 +297,11 @@ public class UploadActivity extends AppCompatActivity {
             return stringBuilder.toString();
         }
 
-        private String bufferedWriterDataFN(HashMap&lt;String, String&gt; HashMapParams) throws UnsupportedEncodingException {
+        private String bufferedWriterDataFN(HashMap<String, String> HashMapParams) throws UnsupportedEncodingException {
 
             stringBuilder = new StringBuilder();
 
-            for (Map.Entry&lt;String, String&gt; KEY : HashMapParams.entrySet()) {
+            for (Map.Entry<String, String> KEY : HashMapParams.entrySet()) {
                 if (check)
                     check = false;
                 else
