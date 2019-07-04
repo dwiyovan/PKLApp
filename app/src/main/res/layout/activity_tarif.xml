@@ -20,7 +20,8 @@
             android:paddingTop="18dp"
             android:textSize="16sp"
             android:layout_gravity="start"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:textColor="@android:color/background_dark"/>
 
     <LinearLayout
             android:layout_width="match_parent"
@@ -30,15 +31,18 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Legalisir Ijasah"/>
-            <TextView
-                android:id="@+id/hargaIjasah"
-                android:layout_width="126dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="155dp"
-                android:text="0"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:text="Legalisir Ijasah"
+                android:textColor="@android:color/background_dark"/>
+
+        <TextView
+            android:id="@+id/hargaIjasah"
+            android:layout_width="126dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="150dp"
+            android:text="0"
+            android:textColor="@android:color/background_dark"
+            android:textSize="14sp"
+            android:textStyle="bold" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -48,14 +52,17 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Legalisir Trankrip Nilai"/>
+                android:text="Legalisir Trankrip Nilai"
+                android:textColor="@android:color/background_dark"/>
+
             <TextView
                 android:id="@+id/hargaTranskrip"
                 android:layout_width="126dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="110dp"
+                android:layout_marginLeft="101dp"
                 android:text="0"
-                android:textSize="16sp"
+                android:textColor="@android:color/background_dark"
+                android:textSize="14sp"
                 android:textStyle="bold" />
         </LinearLayout>
     <TextView
@@ -65,7 +72,8 @@
         android:paddingTop="18dp"
         android:textSize="15sp"
         android:layout_gravity="left"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:textColor="@android:color/background_dark"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -73,7 +81,8 @@
         android:layout_gravity="center"
         android:orientation="vertical"
         android:padding="16dp"
-        android:background="@drawable/border">
+        android:background="@drawable/border"
+        android:textColor="@android:color/background_dark">
 
         <TextView
             android:id="@+id/nama_alumni"
@@ -82,25 +91,28 @@
             android:layout_gravity="left"
             android:text="Nama Alumni"
             android:textSize="12sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textColor="@android:color/background_dark"/>
 
         <TextView
             android:id="@+id/almt_kirim"
             android:layout_width="376dp"
             android:layout_height="80dp"
             android:text="Alamat"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:textColor="@android:color/background_dark"/>
 
         <Button
             android:id="@+id/b_gantiAlamat"
             android:layout_width="113dp"
             android:layout_height="35dp"
             android:textSize="12sp"
-            android:background="@color/colorPrimary"
+            android:background="@drawable/roundbutton"
             android:layout_gravity="right"
             android:text="Ganti Alamat"
             android:textAllCaps="false"
-            android:textStyle="normal"/>
+            android:textStyle="normal"
+            android:textColor="#fff"/>
 
 
     </LinearLayout>
@@ -111,7 +123,8 @@
             android:paddingTop="18dp"
             android:textSize="15sp"
             android:layout_gravity="left"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:textColor="@android:color/background_dark"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -121,7 +134,9 @@
             <Spinner
                 android:id="@+id/spinnerJ"
                 android:layout_width="200dp"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:entries="@array/jasa_kirim"
+                />
             <TextView
                 android:id="@+id/hargaJasa"
                 android:layout_width="126dp"
@@ -132,20 +147,14 @@
                 android:textStyle="bold" />
         </LinearLayout>
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="0.0"
-        android:textAlignment="center"
-        android:textStyle="bold"
-        android:textSize="16sp"/>
+
 
     <Button
         android:id="@+id/b_pembayaran"
         android:layout_width="match_parent"
-android:background="@color/colorPrimary"
+        android:background="@drawable/roundbutton"
         android:layout_height="wrap_content"
-        android:text="Pembayaran" />
+        android:text="Pembayaran"
+        android:textColor="#fff"/>
 
 </LinearLayout>

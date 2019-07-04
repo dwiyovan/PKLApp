@@ -11,4 +11,8 @@
         <item>15</item>
         <item>20</item>
     </string-array>
+
+    <string-array name="jasa_kirim">
+        <item>JNE</item>
+    </string-array>
 </resources>

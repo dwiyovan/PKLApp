@@ -12,6 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/pkl_app"
+        android:textColor="@android:color/background_dark"
         android:textSize="25sp"
         android:textStyle="bold"
         />
@@ -24,12 +25,14 @@
         android:id="@+id/legalisir"
         android:text="@string/pesan_legalisir"
         android:textColor="#fff"/>
+
     <TextView
+        android:id="@+id/register"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/belum_upload_upload_disini"
-        android:gravity="center"
-        android:textColor="@color/colorPrimaryDark"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
         android:contextClickable="true"
-        android:id="@+id/register"/>
+        android:gravity="center"
+        android:text="@string/belum_upload_upload_disini"
+        android:textColor="@android:color/background_dark" />
 </LinearLayout>

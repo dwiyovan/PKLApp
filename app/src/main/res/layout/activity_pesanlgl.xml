@@ -30,16 +30,17 @@
             android:text="Jumlah Legalisasi Ijazah"
             android:layout_marginTop="38dp"
             android:textSize="20dp"
-            android:textStyle="normal"/>
+            android:textStyle="normal"
+            android:textColor="@android:color/background_dark"/>
 
         <Spinner
-            android:layout_width="match_parent"
+            android:layout_width="100dp"
             android:layout_height="42dp"
             android:id="@+id/jumlah1"
             android:entries="@array/jml"
             android:layout_marginTop="20dp"
             app:met_floatingLabel="normal"
-
+            android:textColor="@android:color/background_dark"
             />
 
         <TextView
@@ -48,15 +49,17 @@
             android:text="Jumlah Legalisasi Trnskrip Nilai"
             android:textSize="20dp"
             android:layout_marginTop="38dp"
-            android:textStyle="normal"/>
+            android:textStyle="normal"
+            android:textColor="@android:color/background_dark"/>
 
         <Spinner
             android:id="@+id/jumlah2"
-            android:layout_width="match_parent"
+            android:layout_width="100dp"
             android:layout_height="42dp"
             android:entries="@array/jml"
             android:layout_marginTop="10dp"
             app:met_floatingLabel="normal"
+            android:textColor="@android:color/background_dark"
             />
 
         <Button
