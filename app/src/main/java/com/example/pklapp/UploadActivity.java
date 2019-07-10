@@ -90,7 +90,7 @@ public class UploadActivity extends AppCompatActivity {
 
         ShowSelectedImage = (ImageView)findViewById(R.id.imageView);
 
-        imageName=(EditText)findViewById(R.id.imageName);
+        //imageName=(EditText)findViewById(R.id.imageName);
 
         byteArrayOutputStream = new ByteArrayOutputStream();
 
@@ -193,7 +193,7 @@ public class UploadActivity extends AppCompatActivity {
 
     public void UploadImageToServer(){
 
-        FixBitmap.compress(Bitmap.CompressFormat.JPEG, 40, byteArrayOutputStream);
+        FixBitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
 
         byteArray = byteArrayOutputStream.toByteArray();
 
