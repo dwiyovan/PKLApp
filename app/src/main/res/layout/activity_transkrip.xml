@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TranskripActivity">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:text="Transkrip"
+            android:textSize="24sp"
+            android:visibility="visible"
+            tools:layout_editor_absoluteX="107dp"
+            tools:layout_editor_absoluteY="261dp" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="210dp"
+            android:visibility="visible"
+            app:srcCompat="@android:drawable/alert_light_frame"
+            tools:layout_editor_absoluteX="107dp"
+            tools:layout_editor_absoluteY="48dp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageName"/>
+
+        <Button
+            android:id="@+id/buttonSelect"
+            android:layout_width="174dp"
+            android:layout_height="wrap_content"
+            android:text="Pilih"
+            android:visibility="visible"
+            tools:layout_editor_absoluteX="207dp"
+            tools:layout_editor_absoluteY="261dp" />
+
+        <Button
+            android:id="@+id/buttonUpload"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Upload"
+            android:visibility="gone" />
+
+
+</LinearLayout>
