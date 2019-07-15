@@ -7,26 +7,27 @@
     android:layout_height="match_parent"
     tools:context=".UploadActivity">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="277dp"
-        app:srcCompat="@android:drawable/alert_light_frame"
-        tools:layout_editor_absoluteX="107dp"
-        tools:layout_editor_absoluteY="48dp" />
-
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="36dp"
         android:text="Ijazah"
+        android:textSize="24sp"
         tools:layout_editor_absoluteX="107dp"
         tools:layout_editor_absoluteY="261dp" />
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="210dp"
+        app:srcCompat="@android:drawable/alert_light_frame"
+        tools:layout_editor_absoluteX="107dp"
+        tools:layout_editor_absoluteY="48dp" />
+    
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/imageName" />
+        android:id="@+id/imageName"/>
 
     <Button
         android:id="@+id/buttonSelect"
@@ -40,5 +41,8 @@
         android:id="@+id/buttonUpload"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Upload" />
+        android:text="Upload"
+        android:visibility="gone"/>
+
+
 </LinearLayout>
