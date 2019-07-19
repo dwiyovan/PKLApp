@@ -10,7 +10,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        buildConfigField "String","JNE_API_KEY","\"78e9d840c852684ca761bfab074dfb06\""
+        buildConfigField "String", "JNE_API_KEY", "\"78e9d840c852684ca761bfab074dfb06\""
     }
     buildTypes {
         release {

@@ -15,4 +15,9 @@
     <string-array name="jasa_kirim">
         <item>JNE</item>
     </string-array>
+    <string name="title_activity_tes_awal">tesAwal</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_activity_m_legalisir">mLegalisir</string>
 </resources>
