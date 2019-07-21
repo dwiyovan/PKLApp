@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#DFEBEA</color>
-    <color name="colorPrimaryDark">#000000</color>
-    <color name="colorAccent">#D81B60</color>
-    <color name="White">#FFFFFF</color>
-    <color name="FacebookColor">#2699FB</color>
-
+<color name="colorPrimary">#DFEBEA</color>
+<color name="colorPrimaryDark">#000000</color>
+<color name="colorAccent">#D81B60</color>
+<color name="White">#FFFFFF</color>
+<color name="FacebookColor">#2699FB</color>
+<color name="green">#39B913</color>
+<color name="grey">#DEDEDE</color>
 </resources>
