@@ -17,12 +17,14 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:background="@drawable/border"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="20dp"
+            android:padding="25dp"
             android:orientation="vertical">
             <TextView
                 android:layout_width="match_parent"
@@ -165,7 +167,65 @@
             />
     </RelativeLayout>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border"
+        android:orientation="horizontal"
+        android:padding="5dp">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:padding="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:text="Jasa Pengiriman"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <View android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:layout_marginLeft="5dp"
+                android:background="#bbb"
+                android:layout_marginRight="200dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:text="Pilih Jumlah"
+                android:textSize="12sp" />
+        </LinearLayout>
+        <TextView
+            android:id="@+id/tJasapengiriman"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="JNE"
+            android:layout_toLeftOf="@+id/pilihJasa"
+            android:layout_centerVertical="true"
+            android:paddingRight="20dp"
+            android:textColor="@color/colorPrimaryDark"/>
+        <Button
+            android:id="@+id/pilihJasa"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:text="pilih"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:layout_centerInParent="true"
+            android:background="@drawable/b_grey"/>
+    </RelativeLayout>
 
 
 </LinearLayout>
