@@ -35,4 +35,5 @@
         android:gravity="center"
         android:text="@string/belum_upload_upload_disini"
         android:textColor="@android:color/background_dark" />
+
 </LinearLayout>
