@@ -5,6 +5,7 @@
     <string name="pesan_legalisir">Pesan Legalisir</string>
     <string name="belum_upload_upload_disini">Belum upload? Upload disini</string>
     <string name="alamat"></string>
+    <string name="no_rekening">000501001641300</string>
     <string name="info_legalisir">Harap melengkapi berkas yang ada, agar Legalisir dapat segera diproses. Pastikan berkas yang di-upload sesuai. pload file dengan format PDF. Notifikasi verifikasi dapat dilihat melalui E-Mail yang telah terdaftar</string>
     <string-array name="jml">
         <item>5</item>
