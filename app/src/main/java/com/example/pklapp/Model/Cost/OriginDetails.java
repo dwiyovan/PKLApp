@@ -1,13 +1,11 @@
-package com.example.pklapp.Model;
+package com.example.pklapp.Model.Cost;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class DestinationDetails {
-
-    @SerializedName("city_id")
-    @Expose
-    private String city_id;
+public class OriginDetails {@SerializedName("city_id")
+@Expose
+private String city_id;
     @SerializedName("province_id")
     @Expose
     private String province_id;
@@ -71,4 +69,5 @@ public class DestinationDetails {
     public void setPostal_code(String postal_code) {
         this.postal_code = postal_code;
     }
+
 }

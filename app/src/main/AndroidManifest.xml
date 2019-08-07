@@ -4,9 +4,6 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
-    <meta-data
-        android:name="API Rajaongkir"
-        android:value="78e9d840c852684ca761bfab074dfb06" />
 
     <application
         android:allowBackup="true"
@@ -35,9 +32,6 @@
         </activity>
         <activity
             android:name=".PesanLegalisirActivity"
-            android:parentActivityName=".StartActivity" />
-        <activity
-            android:name=".RegisterActivity"
             android:parentActivityName=".StartActivity" />
         <activity android:name=".MainActivity" />
     </application>
