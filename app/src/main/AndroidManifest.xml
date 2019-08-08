@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".mLegalisir"></activity>
+        <activity android:name=".MLegalisir"></activity>
         <activity android:name=".TranskripActivity" />
         <activity android:name=".UploadActivity" />
         <activity android:name=".StartActivity">

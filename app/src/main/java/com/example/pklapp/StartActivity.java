@@ -47,7 +47,7 @@ public class StartActivity extends AppCompatActivity {
                     @Override
                     public void onSpanClicked(String text) {
 
-                        startActivity(new Intent(StartActivity.this, AdminView.class));
+                        startActivity(new Intent(StartActivity.this, MLegalisir.class));
                     }
                 }).into(txt);
     }

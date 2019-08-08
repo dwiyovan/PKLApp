@@ -3,6 +3,7 @@ package com.example.pklapp.API;
 import com.example.pklapp.Model.City.ItemCity;
 import com.example.pklapp.Model.Cost.ItemCost;
 import com.example.pklapp.Model.Province.ItemProvince;
+import com.example.pklapp.Model.legalisir.Ijazah;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -10,6 +11,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface APIService {
@@ -30,4 +32,12 @@ public interface APIService {
                            @Field("weight") String weight,
                            @Field("courier") String courier);
 
+
+
+    @GET("ijazah")
+    Call<Ijazah> getStatusIjazah(
+            @Query("key") String parameter
+    );
+
 }
+

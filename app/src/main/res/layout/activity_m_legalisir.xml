@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".mLegalisir"
+    tools:context=".MLegalisir"
     android:orientation="vertical">
     <include
         android:id="@+id/toolbar"
@@ -48,13 +48,14 @@
             android:layout_alignParentLeft="true"
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="30dp"
-            android:background="@drawable/failure_24dp" />
+            app:srcCompat="@drawable/failure_24dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
+            android:layout_marginLeft="80dp"
             android:layout_marginRight="110dp"
+            android:layout_centerVertical="true"
             android:orientation="vertical">
 
             <TextView
