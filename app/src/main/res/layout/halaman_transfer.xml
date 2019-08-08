@@ -76,8 +76,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="FAKULTAS EKONOMI & BISNIS
-"
+                android:text="@string/fakultas_ekonomi_bisnis"
                 android:textAlignment="center"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="12sp"

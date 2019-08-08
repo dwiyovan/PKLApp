@@ -6,6 +6,6 @@
 <color name="green">#39B913</color>
 <color name="grey">#DEDEDE</color>
 <color name="lGrey">#F2F2F2</color>
-    <color name="colorPrimaryDark">#FFFFFF</color>
+    <color name="colorPrimaryDark">#000</color>
     <color name="colorPrimary">#3F51B5</color>
 </resources>
