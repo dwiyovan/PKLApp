@@ -1,6 +1,7 @@
-package com.example.pklapp.Model;
+package com.example.pklapp.Model.Cost;
 
 import  java.util.List;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 

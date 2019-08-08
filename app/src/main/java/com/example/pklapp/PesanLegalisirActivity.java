@@ -1,5 +1,6 @@
 package com.example.pklapp;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +17,7 @@ public class PesanLegalisirActivity extends AppCompatActivity {
 
     Spinner jmlIjazah, jmlTrans;
     Button pesan;
+//    ProgressDialog progressDialog;
 
 
 
@@ -51,8 +53,8 @@ public class PesanLegalisirActivity extends AppCompatActivity {
     public void passData(View view){
         Spinner jmlIjazah = findViewById(R.id.jumlah1);
         Spinner jmlTrans = findViewById(R.id.jumlah2);
-        int hitungtotijazah= (Integer.parseInt(jmlIjazah.getSelectedItem().toString()))*3000;
-        int hitungtottrans=(Integer.parseInt(jmlTrans.getSelectedItem().toString()))*3000;
+        int hitungtotijazah= (Integer.parseInt(jmlIjazah.getSelectedItem().toString()))*500;
+        int hitungtottrans=(Integer.parseInt(jmlTrans.getSelectedItem().toString()))*300;
 
         String h_ijazah=String.valueOf(hitungtotijazah);
         String h_trans=String.valueOf(hitungtottrans);
@@ -61,7 +63,9 @@ public class PesanLegalisirActivity extends AppCompatActivity {
         intent_pass.putExtra("hargaIjazah",h_ijazah);
         intent_pass.putExtra("hargaTrans",h_trans);
 
+
         startActivity(intent_pass);
+
 
     }
 }
