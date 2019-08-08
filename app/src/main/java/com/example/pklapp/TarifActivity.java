@@ -157,43 +157,6 @@ public class TarifActivity extends AppCompatActivity {
 
 
 
-    public void getOriginCity(String id_province){
-        Retrofit retrofit=new Retrofit.Builder().baseUrl(APIUrl.URL_ACCESS).addConverterFactory(GsonConverterFactory.create()).build();
-
-        APIService service=retrofit.create(APIService.class);
-        Call<ItemCity> call=service.getCity(id_province);
-        call.enqueue(new Callback<ItemCity>() {
-            @Override
-            public void onResponse(Call<ItemCity> call, Response<ItemCity> response) {
-
-                if(response.isSuccessful()){
-                    int count_data=response.body().getRajaongkir().getResults().size();
-                    for(int i=0;i<count_data-1;i++){
-                        com.example.pklapp.Model.City.Result itemProvince=new com.example.pklapp.Model.City.Result(
-                                response.body().getRajaongkir().getResults().get(i).getCity_id(),
-                                response.body().getRajaongkir().getResults().get(i).getProvince_id(),
-                                response.body().getRajaongkir().getResults().get(i).getProvince(),
-                                response.body().getRajaongkir().getResults().get(i).getType(),
-                                response.body().getRajaongkir().getResults().get(i).getCity_name(),
-                                response.body().getRajaongkir().getResults().get(i).getPostal_code()
-                        );
-                        ListCity.add(itemProvince);
-                        if(ListCity.get(i).getCity_id()=="255"){
-                            ListCity.get(i).getCity_name();
-                        }
-                    }
-
-                }
-
-            }
-
-            @Override
-            public void onFailure(Call<ItemCity> call, Throwable t) {
-
-            }
-        });
-
-    }
 
 
     public void getProvince(){
