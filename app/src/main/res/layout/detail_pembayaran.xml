@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/FacebookColor"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kota Pengiriman"
+            android:textColor="@android:color/black"/>
+        <TextView
+            android:id="@+id/origin_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="nilai"
+            android:textSize="12sp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kota Tujuan"
+            android:paddingTop="20dp"
+            android:textColor="@android:color/black"/>
+        <TextView
+            android:id="@+id/destination_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="nilai"
+            android:textSize="12sp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Alamat Lengkap Tujuan"
+            android:paddingTop="20dp"
+            android:textColor="@android:color/black"/>
+        <TextView
+            android:id="@+id/compl_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="nilai"
+            android:textSize="12sp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Jasa Pengiriman"
+            android:paddingTop="20dp"
+            android:textColor="@android:color/black"/>
+        <TextView
+            android:id="@+id/agent_del"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="nilai"
+            android:textSize="12sp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ongkos Pengiriman"
+            android:paddingTop="20dp"
+            android:textColor="@android:color/black"/>
+        <TextView
+            android:id="@+id/ongkir_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="nilai"
+            android:textSize="12sp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total Harga"
+            android:paddingTop="20dp"
+            android:textColor="@android:color/black"/>
+        <TextView
+            android:id="@+id/total_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="nilai"
+            android:textSize="12sp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lama Pengiriman (Hari)"
+            android:paddingTop="20dp"
+            android:textColor="@android:color/black"/>
+        <TextView
+            android:id="@+id/time_del"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="nilai"
+            android:textSize="12sp"/>
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="183dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/roundbutton"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:layout_marginBottom="10dp"
+        android:text="Pembayaran"
+        android:textColor="@color/cardview_light_background" />
+
+</LinearLayout>

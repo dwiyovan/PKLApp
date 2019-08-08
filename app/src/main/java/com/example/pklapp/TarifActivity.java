@@ -1,28 +1,43 @@
 package com.example.pklapp;
 
+import android.content.Context;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.InputFilter;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.pklapp.API.APIService;
 import com.example.pklapp.API.APIUrl;
-import com.example.pklapp.Model.ItemCost;
+import com.example.pklapp.Adapter.ListCityAdapter;
+import com.example.pklapp.Adapter.ListProvinceAdapter;
+import com.example.pklapp.Model.City.ItemCity;
+import com.example.pklapp.Model.Cost.ItemCost;
+import com.example.pklapp.Model.Province.ItemProvince;
+import com.example.pklapp.Model.Province.Result;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -31,25 +46,27 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class TarifActivity extends AppCompatActivity {
-
-    TextView h_ijasah, h_trankskrip, hargaJasaP,nama_alumni,almt_kirim;
+    String idProvince;
+    TextView h_ijasah, h_trankskrip, hargaJasaP,nama_alumni;
+    EditText province,city,almt_compl;
+    private EditText searchList;
     Spinner jasaP;
-    Button b_pembayaran, b_gantiAlamat;
+    Button b_proses, b_gantiAlamat;
     StartActivity tes =new StartActivity();
     private RequestQueue reqjson;
 
-    String id_kota_asal;
-    String id_provinsi_asal;
-    String provinsi_asal;
-    String tipe_asal;
-    String kota_asal;
-    String postal_code_asal;
-    String id_kota_tujuan;
-    String id_provinsi_tujuan;
-    String provinsi_tujuan;
-    String tipe_tujuan;
-    String kota_tujuan;
-    String postal_code_tujuan;
+    private ListProvinceAdapter provinceAdapter;
+    private ListCityAdapter cityAdapter;
+
+    private AlertDialog.Builder alert;
+    private AlertDialog alertDialog;
+
+    private ListView listView;
+
+    private List<Result> ListProvince=new ArrayList<Result>();
+
+    private List<com.example.pklapp.Model.City.Result> ListCity= new ArrayList<com.example.pklapp.Model.City.Result>();
+
 
 
 
@@ -70,11 +87,12 @@ public class TarifActivity extends AppCompatActivity {
         h_trankskrip = findViewById(R.id.hargaTranskrip);
         hargaJasaP = findViewById(R.id.hargaJasa);
         nama_alumni=findViewById(R.id.nama_alumni);
-        almt_kirim=findViewById(R.id.almt_kirim);
+        almt_compl=findViewById(R.id.almt_compl);
+        province=(EditText) findViewById(R.id.province2_option);
+        city=(EditText) findViewById(R.id.city2_option);
         jasaP = findViewById(R.id.spinnerJ);
-        b_pembayaran = findViewById(R.id.b_pembayaran);
-        b_gantiAlamat = findViewById(R.id.b_gantiAlamat);
-        reqjson= Volley.newRequestQueue(this);
+        b_proses =(Button) findViewById(R.id.b_proses);
+//        reqjson= Volley.newRequestQueue(this);
         Bundle bundle=getIntent().getExtras();
 
 
@@ -85,26 +103,290 @@ public class TarifActivity extends AppCompatActivity {
         //set the value to textView
         h_ijasah.setText("Rp. "+data1+" ,00");
         h_trankskrip.setText("Rp. "+data2+" ,00");
-        nama_alumni.setText("Indiana Jones");
-        almt_kirim.setText("Bali");
-
-        getCost("Yogyakarta",almt_kirim.getText().toString(),"1700","jne");
-
+//        nama_alumni.setText("Indiana Jones");
+//
+//        getCost("Yogyakarta","Denpasar","1700","jne");
 
 
-
-
-        b_pembayaran.setOnClickListener(new View.OnClickListener(){
-
+        province.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                AlertDialogProvince(province,city);
 
             }
         });
 
+        city.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try{
+                    if(province.getTag().equals("")){
+                        province.setError("Silahkan pilih provinsi");
+                    }else{
+                        AlertDialogCity(city,province);
+                    }
+
+                }catch (NullPointerException e){
+                    province.setError("Silahkan pilih provinsi");
+
+                }
+            }
+        });
+        b_proses.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            getCost("255",city.getTag().toString(),"500",jasaP.getSelectedItem().toString());
+
+
+            }
+        });
+
+
+
+//        b_pembayaran.setOnClickListener(new View.OnClickListener(){
+//
+//            @Override
+//            public void onClick(View v) {
+//
+//            }
+//        });
+
     }
 
+
+
+
+
+
+    public void getProvince(){
+        Retrofit retrofit=new Retrofit.Builder().baseUrl(APIUrl.URL_ACCESS).addConverterFactory(GsonConverterFactory.create()).build();
+
+        APIService service=retrofit.create(APIService.class);
+        Call<ItemProvince> call=service.getProvince();
+
+        call.enqueue(new Callback<ItemProvince>() {
+            @Override
+            public void onResponse(Call<ItemProvince> call, Response<ItemProvince> response) {
+
+                Log.v("province","json : "+new Gson().toJson(response));
+                if(response.isSuccessful()){
+                    int count_data=response.body().getRajaongkir().getResults().size();
+                    for(int i=0;i<=count_data-1;i++){
+                        Result itemProvince=new Result(
+                                response.body().getRajaongkir().getResults().get(i).getProvince_id(),
+                                response.body().getRajaongkir().getResults().get(i).getProvince()
+                        );
+                        ListProvince.add(itemProvince);
+                        listView.setAdapter(provinceAdapter);
+
+                    }
+                        provinceAdapter.setList(ListProvince);
+                        provinceAdapter.search("");
+
+                }else{
+                    Toast.makeText(TarifActivity.this, "Tidak bisa ambil data dari Server", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ItemProvince> call, Throwable t) {
+                    Toast.makeText(TarifActivity.this,"Error Message:"+t.getMessage(),Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void AlertDialogProvince(final EditText EtProvince, final EditText EtCity){
+        LayoutInflater inflater=(LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View alertLayout=inflater.inflate(R.layout.search_layout,null);
+
+        alert=new AlertDialog.Builder(TarifActivity.this);
+        alert.setTitle("List Province");
+        alert.setMessage("Pilih Provinsi");
+        alert.setView(alertLayout);
+        alert.setCancelable(true);
+
+        alertDialog=alert.show();
+
+        searchList=(EditText)alertLayout.findViewById(R.id.searchItem);
+        searchList.addTextChangedListener(new TextDetectorProvince(searchList));
+        searchList.setFilters(new InputFilter[]{new InputFilter.AllCaps()});
+
+        listView=(ListView) alertLayout.findViewById(R.id.list_item);
+
+        ListProvince.clear();
+        provinceAdapter=new ListProvinceAdapter(TarifActivity.this,ListProvince);
+        listView.setClickable(true);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> AdapterView, View view, int position, long id) {
+                Object i=listView.getItemAtPosition(position);
+                Result lp=(Result) i;
+
+                EtProvince.setError(null);
+                EtProvince.setText(lp.getProvince());
+                EtProvince.setTag(lp.getProvince_id());
+
+                EtCity.setText("");
+                EtCity.setTag("");
+
+                alertDialog.dismiss();
+
+            }
+        });
+
+        getProvince();
+
+    }
+
+    private class TextDetectorProvince implements TextWatcher{
+        private View view;
+
+        private TextDetectorProvince(View view) {
+            this.view = view;
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            switch (view.getId()){
+                case R.id.searchItem:
+                    provinceAdapter.search(s.toString());
+                    break;
+            }
+        }
+    }
+
+
+    private class TextDetectorCity implements TextWatcher{
+        private  View view;
+
+        private TextDetectorCity(View view) {
+            this.view = view;
+        }
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+            switch (view.getId()){
+                case (R.id.search_bar):
+                    cityAdapter.search(s.toString());
+                    break;
+
+            }
+
+        }
+    }
+
+    public void  getCity(String id_province){
+
+        Retrofit retrofit=new Retrofit.Builder().baseUrl(APIUrl.URL_ACCESS).addConverterFactory(GsonConverterFactory.create()).build();
+
+        APIService service = retrofit.create(APIService.class);
+        Call<ItemCity> call=service.getCity(id_province);
+
+        call.enqueue(new Callback<ItemCity>() {
+            @Override
+            public void onResponse(Call<ItemCity> call, Response<ItemCity> response) {
+
+                Log.v("city","json: "+new Gson().toJson(response));
+
+                if(response.isSuccessful()){
+                    int count_data=response.body().getRajaongkir().getResults().size();
+                    for(int i=0;i<=count_data-1;i++){
+                        com.example.pklapp.Model.City.Result itemProvince=new com.example.pklapp.Model.City.Result(
+                                response.body().getRajaongkir().getResults().get(i).getCity_id(),
+                                response.body().getRajaongkir().getResults().get(i).getProvince_id(),
+                                response.body().getRajaongkir().getResults().get(i).getProvince(),
+                                response.body().getRajaongkir().getResults().get(i).getType(),
+                                response.body().getRajaongkir().getResults().get(i).getCity_name(),
+                                response.body().getRajaongkir().getResults().get(i).getPostal_code()
+                        );
+                        ListCity.add(itemProvince);
+                        listView.setAdapter(cityAdapter);
+                    }
+                        cityAdapter.setList(ListCity);
+                    cityAdapter.search("");
+
+                }else{
+                    Toast.makeText(TarifActivity.this, "Tidak bisa ambil data dari Server", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ItemCity> call, Throwable t) {
+                Toast.makeText(TarifActivity.this,"Error Message:"+t.getMessage(),Toast.LENGTH_SHORT).show();
+
+            }
+        });
+    }
+
+    public void AlertDialogCity(final EditText EtCity,final EditText EtProvince){
+        LayoutInflater inflater=(LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View alertLayout=inflater.inflate(R.layout.search_layout,null);
+
+        alert=new AlertDialog.Builder(TarifActivity.this);
+        alert.setTitle("List City");
+        alert.setMessage("Pilih Kota");
+        alert.setView(alertLayout);
+        alert.setCancelable(true);
+
+        alertDialog=alert.show();
+
+        searchList=(EditText) alertLayout.findViewById(R.id.searchItem);
+        searchList.addTextChangedListener(new TextDetectorCity(searchList));
+        searchList.setFilters(new InputFilter[]{new InputFilter.AllCaps()});
+
+        listView=(ListView)alertLayout.findViewById(R.id.list_item);
+
+        ListCity.clear();
+        cityAdapter=new ListCityAdapter(TarifActivity.this,ListCity);
+        listView.setClickable(true);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> AdapterView, View view, int position, long id) {
+                Object i=listView.getItemAtPosition(position);
+                com.example.pklapp.Model.City.Result lc=(com.example.pklapp.Model.City.Result) i;
+
+                EtCity.setError(null);
+                EtCity.setText(lc.getCity_name());
+                EtCity.setTag(lc.getCity_id());
+
+                alertDialog.dismiss();
+
+            }
+        });
+
+        getCity(EtProvince.getTag().toString());
+
+    }
+
+
+
+
     public void getCost(String origin, String destination, String weight, String courier){
+
 
         Retrofit retrofit=new Retrofit.Builder().baseUrl(APIUrl.URL_ACCESS).addConverterFactory(GsonConverterFactory.create()).build();
 
@@ -112,35 +394,79 @@ public class TarifActivity extends AppCompatActivity {
         Call<ItemCost> call=service.getCost("9a9d935dede69ae9232843a3d2a02e4b",origin,destination,weight,courier);
 
 
-        try{
         call.enqueue(new Callback<ItemCost>() {
             @Override
             public void onResponse(Call<ItemCost> call, Response<ItemCost> response) {
                 Log.v("tes", "json : " + new Gson().toJson(response));
 
 
-                    if (response.isSuccessful()) {
-                        int statuscode = response.body().getRajaongkir().getStatus().getCode();
+                if (response.isSuccessful()) {
+                    int statuscode = response.body().getRajaongkir().getStatus().getCode();
+                    ItemCost itemCost = response.body();
+
+                    if (statuscode == 200) {
+                        Bundle bundle=getIntent().getExtras();
+                        String priceijazah=bundle.getString("hargaIjazah");
+                        String pricetrans=bundle.getString("hargaTrans");
+
+                        TextView asal,tujuan,agen,ongkir,lama,alamat,total_harga;
+
+                            String resultasal  =itemCost.getRajaongkir().getOriginDetails().getCity_name() +"("+response.body().getRajaongkir().
+                                    getDestinationDetails().getPostal_code()+")";
 
 
-                        if (statuscode == 200) {
+                        String resulttujuan=itemCost.getRajaongkir().getDestinationDetails().getCity_name() +"("+response.body().getRajaongkir().
+                                getDestinationDetails().getPostal_code()+")";
 
-                            hargaJasaP.setText("Rp." + response.body().getRajaongkir().getResults().get(0).getCosts().get(0).getCost().get(0).getValue().toString());
+                        int resultongkir=response.body().getRajaongkir().getResults().get(0).getCosts().get(0).getCost().get(0).getValue();
+
+                        String resultagen  =response.body().getRajaongkir().getResults().get(0).getCosts().get(0).getDescription()+"("+
+                                response.body().getRajaongkir().getResults().get(0).getName()+")";
+
+                        String resultlamakirim=response.body().getRajaongkir().getResults().get(0).getCosts().get(0).getCost().get(0).getEtd()+"";
+
+                        LayoutInflater inflater=(LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                        View alertlayout=inflater.inflate(R.layout.detail_pembayaran,null);
+                        alert=new AlertDialog.Builder(TarifActivity.this);
+                        alert.setTitle("Detail Pembayaran");
+                        alert.setMessage("Silahkan cek kembali. Tekan tombol pembayaran jika anda sudah yakin");
+                        alert.setView(alertlayout);
+                        alert.setCancelable(true);
+
+                        alertDialog=alert.show();
+
+                        asal=alertlayout.findViewById(R.id.origin_city);
+                        tujuan=alertlayout.findViewById(R.id.destination_city);
+                        agen=alertlayout.findViewById(R.id.agent_del);
+                        ongkir=alertlayout.findViewById(R.id.ongkir_value);
+                        alamat=alertlayout.findViewById(R.id.compl_address);
+                        total_harga=alertlayout.findViewById(R.id.total_price);
+                        lama=alertlayout.findViewById(R.id.time_del);
 
 
-                        } else {
-                            String unsuccessful_msg = response.body().getRajaongkir().getStatus().getDescription();
-                            Toast.makeText(TarifActivity.this, unsuccessful_msg, Toast.LENGTH_SHORT).show();
-                        }
+                        asal.setText(resultasal);
+                        tujuan.setText(resulttujuan);
+                        alamat.setText(almt_compl.getText().toString());
+                        agen.setText(resultagen);
+                        ongkir.setText("Rp." + resultongkir);
+                        total_harga.setText("Rp"+(resultongkir+Integer.parseInt(priceijazah)+Integer.parseInt(pricetrans)));
+                        lama.setText(resultlamakirim);
+
+
+                        province.setText("");
+                        city.setText("");
+                        almt_compl.setText("");
+
                     } else {
-                        String error_msg = "Tidak bisa ambil data dari server";
-                        Toast.makeText(TarifActivity.this, error_msg, Toast.LENGTH_SHORT).show();
+                        String unsuccessful_msg = response.body().getRajaongkir().getStatus().getDescription();
+                        Toast.makeText(TarifActivity.this, unsuccessful_msg, Toast.LENGTH_SHORT).show();
                     }
-
-
+                } else {
+                    String error_msg = "Tidak bisa ambil data dari server";
+                    Toast.makeText(TarifActivity.this, error_msg, Toast.LENGTH_SHORT).show();
+                }
 
             }
-
 
             @Override
             public void onFailure(Call<ItemCost> call, Throwable t) {
@@ -148,7 +474,7 @@ public class TarifActivity extends AppCompatActivity {
                 Toast.makeText(TarifActivity.this, "Gagal melakukan task", Toast.LENGTH_SHORT).show();
 
             }
-        });}catch (Exception e){e.printStackTrace();}
+        });
 
 
     }

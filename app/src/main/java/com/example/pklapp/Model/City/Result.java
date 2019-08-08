@@ -1,10 +1,9 @@
-package com.example.pklapp.Model;
+package com.example.pklapp.Model.City;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class DestinationDetails {
-
+public class Result {
     @SerializedName("city_id")
     @Expose
     private String city_id;
@@ -23,6 +22,15 @@ public class DestinationDetails {
     @SerializedName("postal_code")
     @Expose
     private String postal_code;
+
+    public Result(String city_id, String province_id, String province, String type, String city_name, String postal_code) {
+        this.city_id = city_id;
+        this.province_id = province_id;
+        this.province = province;
+        this.type = type;
+        this.city_name = city_name;
+        this.postal_code = postal_code;
+    }
 
     public String getCity_id() {
         return city_id;

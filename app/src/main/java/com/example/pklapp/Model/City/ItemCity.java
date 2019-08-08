@@ -1,9 +1,9 @@
-package com.example.pklapp.Model;
+package com.example.pklapp.Model.City;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class ItemCost {
+public class ItemCity {
 
     @SerializedName("rajaongkir")
     @Expose
