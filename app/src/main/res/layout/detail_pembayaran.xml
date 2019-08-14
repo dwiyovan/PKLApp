@@ -109,6 +109,7 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/fixpesan"
         android:layout_width="183dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
