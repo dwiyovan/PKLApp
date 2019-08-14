@@ -4,6 +4,7 @@ import com.example.pklapp.Model.City.ItemCity;
 import com.example.pklapp.Model.Cost.ItemCost;
 import com.example.pklapp.Model.Province.ItemProvince;
 import com.example.pklapp.Model.legalisir.Ijazah;
+import com.example.pklapp.Model.legalisir.TranskripNilai;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -37,6 +38,11 @@ public interface APIService {
     @GET("ijazah")
     Call<Ijazah> getStatusIjazah(
             @Query("key") String parameter
+    );
+
+    @GET("transkripNilai")
+    Call<TranskripNilai> getStatusTranksripNilai(
+            @Query("key2") String parameter
     );
 
 }
