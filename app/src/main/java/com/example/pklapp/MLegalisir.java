@@ -2,9 +2,6 @@ package com.example.pklapp;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -50,10 +47,10 @@ public class MLegalisir extends AppCompatActivity {
             public void onResponse(Call<Ijazah> call, Response<Ijazah> response) {
                 Ijazah ijazah = response.body();
                 if (ijazah.getValidasi().equalsIgnoreCase("terima")){
-                    imgStatusIjazah.setImageResource(R.drawable.ic_notifications_black_24dp);
+                    imgStatusIjazah.setImageResource(R.drawable.ic_check_circle_black_24dp);
 
                 }else{
-                    imgStatusIjazah.setImageResource(R.drawable.ic_search_black_24dp);
+                    imgStatusIjazah.setImageResource(R.drawable.ic_failure_24dp);
                 }
                 statusIjazah.setText(ijazah.getValidasi());
 //                Log.d("asu", "  "+response.body());
@@ -74,10 +71,10 @@ public class MLegalisir extends AppCompatActivity {
             public void onResponse(Call<TranskripNilai> call, Response<TranskripNilai> response) {
                 TranskripNilai transkripNilai = response.body();
                 if (transkripNilai.getValidasi().equalsIgnoreCase("terima")){
-                    imgStatusTN.setImageResource(R.drawable.ic_notifications_black_24dp);
+                    imgStatusTN.setImageResource(R.drawable.ic_check_circle_black_24dp);
 
                 }else{
-                    imgStatusTN.setImageResource(R.drawable.ic_search_black_24dp);
+                    imgStatusTN.setImageResource(R.drawable.ic_failure_24dp);
                 }
                 statusTN.setText(transkripNilai.getValidasi());
 //                Log.d("asu", "  "+response.body());
