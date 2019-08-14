@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".mLegalisir"
+    tools:context=".MLegalisir"
     android:orientation="vertical">
     <include
         android:id="@+id/toolbar"
@@ -42,44 +42,51 @@
         android:paddingBottom="15dp">
 
         <ImageView
-            android:id="@+id/statusIjasah"
+            android:id="@+id/imgsIjazah"
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_alignParentLeft="true"
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="30dp"
-            android:background="@drawable/failure_24dp" />
+            app:srcCompat="@drawable/failure_24dp" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="110dp"
             android:layout_marginLeft="80dp"
+            android:layout_marginRight="110dp"
             android:layout_centerVertical="true"
             android:orientation="vertical">
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
                 android:text="Berkas Ijazah"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="14sp"
-                android:layout_marginLeft="10dp"
-                android:textStyle="bold"/>
-            <View android:layout_width="match_parent"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
                 android:layout_height="3dp"
-                android:background="#bbb"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="20dp"/>
+                android:layout_marginRight="20dp"
+                android:background="#bbb" />
+
             <TextView
+                android:id="@+id/statusIjazah"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
                 android:text="Status"
                 android:textColor="@color/FacebookColor"
-                android:textSize="12sp"
-                android:layout_marginLeft="10dp"/>
+                android:textSize="12sp" />
 
         </LinearLayout>
 
         <Button
+            android:id="@+id/bIjazah"
             android:layout_width="80dp"
             android:layout_height="30dp"
             android:layout_alignParentRight="true"
@@ -101,7 +108,7 @@
         android:paddingBottom="15dp">
 
         <ImageView
-            android:id="@+id/statusTN"
+            android:id="@+id/imgsTN"
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_alignParentLeft="true"
@@ -134,6 +141,7 @@
                 android:background="#bbb" />
 
             <TextView
+                android:id="@+id/statusTN"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -144,6 +152,7 @@
         </LinearLayout>
 
         <Button
+            android:id="@+id/bTN"
             android:layout_width="80dp"
             android:layout_height="30dp"
             android:layout_alignParentRight="true"
@@ -161,6 +170,7 @@
         android:layout_height="match_parent">
 
         <Button
+            android:id="@+id/bPengiriman"
             android:layout_width="match_parent"
             android:layout_height="35dp"
             android:layout_alignParentBottom="true"
