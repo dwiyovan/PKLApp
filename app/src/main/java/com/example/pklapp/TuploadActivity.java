@@ -23,7 +23,7 @@ public class TuploadActivity extends AppCompatActivity{
 
     Uri uri;
 
-    public static final String PDF_UPLOAD_HTTP_URL = "http://androidblog.esy.es/AndroidJSon/file_upload.php";
+    public static final String PDF_UPLOAD_HTTP_URL = "http://192.168.1.60/legalisir/transkrip_upload.php";
 
     public int PDF_REQ_CODE = 1;
 
