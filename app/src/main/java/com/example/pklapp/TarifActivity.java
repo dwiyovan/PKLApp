@@ -497,7 +497,7 @@ public class TarifActivity extends AppCompatActivity {
         Gson gson = new GsonBuilder()
                 .setLenient()
                 .create();
-        Retrofit retrofit = new Retrofit.Builder().baseUrl(APIUrl.URL_DB).addConverterFactory(GsonConverterFactory.create(gson)).build();
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(APIUrl.URL_ACCESSLegalisir).addConverterFactory(GsonConverterFactory.create(gson)).build();
 
         APIService apiService = retrofit.create(APIService.class);
         Call<InsertResponse> call = apiService.savetransaction(id_pemesan, berat, ongkir, total_harga, total_bayar, provinsi, kota, jalan, kode_pos);
