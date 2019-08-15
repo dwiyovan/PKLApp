@@ -1,21 +1,152 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MLegalisir"
-    android:orientation="vertical">
+    tools:context=".MLegalisir">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <include
         android:id="@+id/toolbar"
         layout="@layout/bar_layout"
         >
     </include>
-
     <RelativeLayout
+        android:id="@+id/l1"
+        android:layout_below="@id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:background="@drawable/border"
+        android:orientation="horizontal"
+        android:padding="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:padding="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:text="Legalisir Transkrip Nilai"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <View android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:layout_marginLeft="5dp"
+                android:background="#bbb"
+                android:layout_marginRight="200dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:text="Pilih Jumlah"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <Spinner
+            android:id="@+id/jmlIjz"
+            android:entries="@array/jml"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            app:met_floatingLabel="normal"
+            android:textColor="@android:color/background_dark"
+            />
+        <TextView
+            android:id="@+id/vHrgaijz"
+            android:layout_below="@+id/jmlIjz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="30dp"
+            app:met_floatingLabel="normal"
+            android:text="0.0"
+            android:textColor="@color/FacebookColor"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/l2"
+        android:layout_below="@+id/l1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border"
+        android:orientation="horizontal"
+        android:padding="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:padding="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:text="Legalisir Transkrip Nilai"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <View android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:layout_marginLeft="5dp"
+                android:background="#bbb"
+                android:layout_marginRight="200dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
+                android:text="Pilih Jumlah"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <Spinner
+            android:id="@+id/jmlTN"
+            android:entries="@array/jml"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            app:met_floatingLabel="normal"
+            android:textColor="@android:color/background_dark"
+            />
+        <TextView
+            android:id="@+id/vHargaTN"
+            android:layout_below="@+id/jmlTN"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="30dp"
+            app:met_floatingLabel="normal"
+            android:text="0.0"
+            android:textColor="@color/FacebookColor"/>
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/l3"
+        android:layout_below="@+id/l2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="@drawable/border"
         android:orientation="horizontal"
         android:paddingTop="15dp"
@@ -37,139 +168,58 @@
                 android:layout_height="3dp"
                 android:background="#bbb"
                 android:layout_marginRight="200dp"/>
-            <RelativeLayout
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:text="@string/alamat"
+                android:layout_height="wrap_content"
                 android:textSize="12sp"
                 android:padding="10dp"
-                android:background="@drawable/border">
-                <Button
-                    android:id="@+id/b_gantiAlamat"
-                    android:layout_width="110dp"
-                    android:layout_height="30dp"
-                    android:layout_alignParentRight="true"
-                    android:text="Ganti Alamat"
-                    android:textSize="12sp"
-                    android:textStyle="bold"
-                    android:background="@drawable/b_grey"/>
+                android:background="@drawable/border"
+                android:orientation="vertical">
                 <TextView
-                    android:id="@+id/viewAlamat"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="@string/alamat"
-                    android:textSize="12sp"/>
-            </RelativeLayout>
+                    android:id="@+id/nama_alumni"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:text="Nama Alumni"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:id="@+id/province2_option"
+                    android:layout_width="381dp"
+                    android:layout_height="60dp"
+                    android:hint="Pilih Provinsi"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="12sp" />
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:id="@+id/city2_option"
+                    android:layout_width="381dp"
+                    android:layout_height="60dp"
+                    android:hint="Pilih Kota"
+                    android:textColor="@android:color/background_dark"
+                    android:textSize="12sp" />
+
+                <com.rengwuxian.materialedittext.MaterialEditText
+                    android:id="@+id/almt_compl"
+                    android:layout_width="381dp"
+                    android:layout_height="60dp"
+                    android:hint="AlamatLengkap"
+                    android:textSize="12sp" />
+
+
+            </LinearLayout>
         </LinearLayout>
     </RelativeLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/border"
-        android:orientation="horizontal"
-        android:padding="5dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_centerInParent="true"
-            android:padding="20dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="5dp"
-                android:text="Legalisir Transkrip Nilai"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-
-            <View android:layout_width="match_parent"
-                android:layout_height="3dp"
-                android:layout_marginLeft="5dp"
-                android:background="#bbb"
-                android:layout_marginRight="200dp"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="5dp"
-                android:text="Pilih Jumlah"
-                android:textSize="12sp" />
-
-        </LinearLayout>
-
-        <Spinner
-            android:id="@+id/jumlah1"
-            android:entries="@array/jml"
-            android:layout_width="80dp"
-            android:layout_height="30dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="20dp"
-            android:layout_centerInParent="true"
-            app:met_floatingLabel="normal"
-            android:textColor="@android:color/background_dark"
-            />
-    </RelativeLayout>
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/border"
-        android:orientation="horizontal"
-        android:padding="5dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_centerInParent="true"
-            android:padding="20dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="5dp"
-                android:text="Legalisir Transkrip Nilai"
-                android:textColor="@color/colorPrimaryDark"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-
-            <View android:layout_width="match_parent"
-                android:layout_height="3dp"
-                android:layout_marginLeft="5dp"
-                android:background="#bbb"
-                android:layout_marginRight="200dp"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="5dp"
-                android:text="Pilih Jumlah"
-                android:textSize="12sp" />
-
-        </LinearLayout>
-
-        <Spinner
-            android:id="@+id/jumlah2"
-            android:entries="@array/jml"
-            android:layout_width="80dp"
-            android:layout_height="30dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="20dp"
-            android:layout_centerInParent="true"
-            app:met_floatingLabel="normal"
-            android:textColor="@android:color/background_dark"
-            />
-    </RelativeLayout>
-
-    <RelativeLayout
+        android:id="@+id/vkurir"
+        android:layout_below="@+id/l3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/border"
@@ -206,28 +256,34 @@
                 android:text="Pilih Jumlah"
                 android:textSize="12sp" />
         </LinearLayout>
-        <TextView
-            android:id="@+id/tJasapengiriman"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="JNE"
-            android:layout_toLeftOf="@+id/pilihJasa"
-            android:layout_centerVertical="true"
-            android:paddingRight="20dp"
-            android:textColor="@color/colorPrimaryDark"/>
-        <Button
-            android:id="@+id/pilihJasa"
+        <Spinner
+            android:id="@+id/spPengiriman"
+            android:entries="@array/jasa_kirim"
             android:layout_width="80dp"
             android:layout_height="30dp"
+            android:layout_marginTop="20dp"
             android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
             android:layout_marginRight="20dp"
-            android:text="pilih"
-            android:textSize="12sp"
-            android:textStyle="bold"
-            android:layout_centerInParent="true"
-            android:background="@drawable/b_grey"/>
+            android:layout_centerVertical="true"
+            android:paddingRight="20dp"
+            app:met_floatingLabel="normal"
+            android:textColor="@color/colorPrimaryDark"
+            />
+
+
     </RelativeLayout>
-
-
-</LinearLayout>
+        <Button
+            android:id="@+id/bPengiriman"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="50dp"
+            android:layout_marginBottom="33dp"
+            android:background="@drawable/b_green"
+            android:text="Pengiriman"
+            android:textColor="@color/White"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+</ScrollView>
