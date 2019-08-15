@@ -48,6 +48,7 @@ public class StartActivity extends AppCompatActivity {
                     public void onSpanClicked(String text) {
 
                         startActivity(new Intent(StartActivity.this, MLegalisir.class));
+
                     }
                 }).into(txt);
     }

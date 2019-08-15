@@ -5,7 +5,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.example.pklapp"
-        minSdkVersion 16
+        minSdkVersion 19
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
@@ -30,6 +30,7 @@ dependencies {
     implementation 'com.android.support:design:28.0.0'
     implementation 'com.android.support:cardview-v7:28.0.0'
     implementation 'com.rengwuxian.materialedittext:library:2.1.4'
+    implementation 'net.gotev:uploadservice:2.1'
 
     // Glide library
     implementation 'com.github.bumptech.glide:glide:4.6.1'
