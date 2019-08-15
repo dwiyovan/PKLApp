@@ -2,7 +2,10 @@ package com.example.pklapp.API;
 
 import com.example.pklapp.Model.City.ItemCity;
 import com.example.pklapp.Model.Cost.ItemCost;
+import com.example.pklapp.Model.InsertResponse;
 import com.example.pklapp.Model.Province.ItemProvince;
+import com.example.pklapp.Model.legalisir.Ijazah;
+import com.example.pklapp.Model.legalisir.TranskripNilai;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -10,6 +13,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface APIService {
@@ -30,4 +34,31 @@ public interface APIService {
                            @Field("weight") String weight,
                            @Field("courier") String courier);
 
+    @FormUrlEncoded
+    @POST("insert_legalisir.php")
+    Call<InsertResponse> savetransaction(
+           @Field("id_pemesan") String id_pemesan,
+           @Field("total_berat") int berat,
+           @Field("ongkos_kirim") int ongkir,
+           @Field("total_harga") int total_harga,
+           @Field("total_bayar") int total_bayar,
+           @Field("provinsi") String provinsi,
+           @Field("kota") String kota,
+           @Field("jalan") String jalan,
+           @Field("kode_pos") String kode_pos
+    );
+
+
+
+    @GET("ijazah")
+    Call<Ijazah> getStatusIjazah(
+            @Query("key") String parameter
+    );
+
+    @GET("transkripNilai")
+    Call<TranskripNilai> getStatusTranksripNilai(
+            @Query("key2") String parameter
+    );
+
 }
+

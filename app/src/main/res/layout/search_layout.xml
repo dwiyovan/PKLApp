@@ -16,7 +16,7 @@
         <EditText
             android:id="@+id/searchItem"
             android:hint="Cari"
-            android:background="@color/Grey"
+            android:background="@color/grey"
             android:layout_marginBottom="10dp"
             android:padding="16dp"
             android:drawableRight="@drawable/ic_search_black_24dp"

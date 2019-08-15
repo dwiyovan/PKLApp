@@ -15,6 +15,7 @@ import com.example.pklapp.Adapter.PatternEditableBuilder;
 public class StartActivity extends AppCompatActivity {
 
     Button pesan;
+    Button tes;
 
 
     @Override
@@ -46,7 +47,8 @@ public class StartActivity extends AppCompatActivity {
                     @Override
                     public void onSpanClicked(String text) {
 
-                        startActivity(new Intent(StartActivity.this, IuploadActivity.class));
+                        startActivity(new Intent(StartActivity.this, MLegalisir.class));
+
                     }
                 }).into(txt);
     }
