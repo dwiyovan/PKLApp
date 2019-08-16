@@ -30,7 +30,7 @@ public class StartActivity extends AppCompatActivity {
         pesan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(StartActivity.this, PesanLegalisirActivity.class));
+                startActivity(new Intent(StartActivity.this, TarifActivity.class));
 
 
             }
