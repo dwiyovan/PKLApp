@@ -36,7 +36,7 @@ import java.util.Map;
 
 import javax.net.ssl.HttpsURLConnection;
 
-public class UploadActivity extends AppCompatActivity {
+public class UploadBuktiActivity extends AppCompatActivity {
 
     Button GetImageFromGalleryButton, UploadImageOnServerButton;
 
@@ -81,7 +81,7 @@ public class UploadActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_upload);
+        setContentView(R.layout.activity_uploadbukti);
 
         GetImageFromGalleryButton = (Button)findViewById(R.id.buttonSelect);
 
@@ -115,7 +115,7 @@ public class UploadActivity extends AppCompatActivity {
             }
         });
 
-        if (ContextCompat.checkSelfPermission(UploadActivity.this, android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(UploadBuktiActivity.this, android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                 requestPermissions(new String[]{android.Manifest.permission.CAMERA},
                         5);
@@ -176,7 +176,7 @@ public class UploadActivity extends AppCompatActivity {
 
                 } catch (IOException e) {
                     e.printStackTrace();
-                    Toast.makeText(UploadActivity.this, "Failed!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UploadBuktiActivity.this, "Failed!", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -205,7 +205,7 @@ public class UploadActivity extends AppCompatActivity {
 
                 super.onPreExecute();
 
-                progressDialog = ProgressDialog.show(UploadActivity.this,"Image is Uploading","Please Wait",false,false);
+                progressDialog = ProgressDialog.show(UploadBuktiActivity.this,"Image is Uploading","Please Wait",false,false);
             }
 
             @Override
@@ -215,9 +215,9 @@ public class UploadActivity extends AppCompatActivity {
 
                 progressDialog.dismiss();
 
-                Toast.makeText(UploadActivity.this,string1,Toast.LENGTH_LONG).show();
+                Toast.makeText(UploadBuktiActivity.this,string1,Toast.LENGTH_LONG).show();
 
-                startActivity(new Intent(UploadActivity.this, TranskripActivity.class));
+                startActivity(new Intent(UploadBuktiActivity.this, TranskripActivity.class));
 
             }
 
@@ -330,7 +330,7 @@ public class UploadActivity extends AppCompatActivity {
             }
             else {
 
-                Toast.makeText(UploadActivity.this, "Unable to use Camera..Please Allow us to use Camera", Toast.LENGTH_LONG).show();
+                Toast.makeText(UploadBuktiActivity.this, "Unable to use Camera..Please Allow us to use Camera", Toast.LENGTH_LONG).show();
 
             }
         }
