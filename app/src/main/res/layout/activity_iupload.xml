@@ -13,11 +13,13 @@
     </include>
 
     <LinearLayout
+        android:id="@+id/l_upload"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:orientation="vertical"
+        android:padding="10dp"
         >
 
         <TextView
@@ -38,18 +40,23 @@
             android:text="Select PDF"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="20dp"
+            android:padding="10dp"
             android:layout_gravity="right"
-            android:layout_marginRight="25dp"/>
-        <Button
-            android:id="@+id/button2"
-            android:text="Upload pdf on online server"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="20dp"
-            android:layout_gravity="right"
-            android:layout_marginRight="25dp" />
+            android:layout_marginRight="25dp"
+            android:background="@drawable/border_biru"/>
     </LinearLayout>
+
+    <Button
+            android:id="@+id/button2"
+            android:layout_below="@+id/l_upload"
+            android:text="Upload"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:padding="10dp"
+            android:layout_gravity="right"
+            android:layout_marginHorizontal="40dp"
+            android:background="@drawable/b_grey"/>
 
 
 

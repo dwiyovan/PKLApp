@@ -16,9 +16,7 @@
         <activity android:name=".TuploadActivity"></activity>
         <activity android:name=".IuploadActivity" />
         <activity android:name=".TranskripActivity" />
-        <activity android:name=".MLegalisir"></activity>
-        <activity android:name=".TranskripActivity" />
-        <activity android:name=".UploadActivity" />
+       <activity android:name=".UploadActivity" />
         <activity android:name=".StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
