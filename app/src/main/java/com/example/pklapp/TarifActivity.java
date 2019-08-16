@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -52,10 +53,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class TarifActivity extends AppCompatActivity {
 
     String idProvince;
-    TextView h_ijasah, h_trankskrip, hargaJasaP, nama_alumni;
+    TextView h_ijasah, h_trankskrip, nama_alumni;
     EditText province, city, almt_compl;
     private EditText searchList;
-    Spinner jasaP;
+    Spinner jasaP,jmlITN,jmlijz;
     Button b_proses, b_gantiAlamat;
     StartActivity tes = new StartActivity();
     private RequestQueue reqjson;
@@ -72,41 +73,113 @@ public class TarifActivity extends AppCompatActivity {
 
     private List<com.example.pklapp.Model.City.Result> ListCity = new ArrayList<com.example.pklapp.Model.City.Result>();
 
-    int totalweight;
+    int totalweight,data1,data2;
     String getProvinceValue,getCityValue,getAddressValue;
+    String[] getArrayjml;
+    ArrayAdapter<String> jml_adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tarif);
+        setContentView(R.layout.pemesanan_legalisir);
 
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Tarif");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
 
-        h_ijasah = findViewById(R.id.hargaIjasah);
-        h_trankskrip = findViewById(R.id.hargaTranskrip);
-        hargaJasaP = findViewById(R.id.hargaJasa);
+        h_ijasah = findViewById(R.id.vHrgaijz);
+        h_trankskrip = findViewById(R.id.vHargaTN);
         nama_alumni = findViewById(R.id.nama_alumni);
         almt_compl = findViewById(R.id.almt_compl);
         province = (EditText) findViewById(R.id.province2_option);
         city = (EditText) findViewById(R.id.city2_option);
         jasaP = findViewById(R.id.spinnerJ);
+        jmlijz=findViewById(R.id.jmlIjz);
+        jmlITN=findViewById(R.id.jmlTN);
         b_proses = (Button) findViewById(R.id.b_proses);
-        Bundle bundle = getIntent().getExtras();
+//        Bundle bundle = getIntent().getExtras();
 
 
-        //pass data to string variables
-        final String data1 = bundle.getString("hargaIjazah");
-        final String data2 = bundle.getString("hargaTrans");
-        totalweight = (Integer.parseInt(data1) / 500 + Integer.parseInt(data2) / 300) * 80;
+        //data1=harga ijazah, data2=harga transkrip
+         data1=(Integer.parseInt(jmlijz.getSelectedItem().toString()))*500;
+         data2=(Integer.parseInt(jmlITN.getSelectedItem().toString()))*300;
+        totalweight = (Integer.parseInt(jmlijz.getSelectedItem().toString())+Integer.parseInt(jmlITN.getSelectedItem().toString()))* 80;
+
+        getArrayjml=getResources().getStringArray(R.array.jml);
 
 
         //set the value to textView
-        h_ijasah.setText("Rp. " + data1 + " ,00");
-        h_trankskrip.setText("Rp. " + data2 + " ,00");
+
+        jml_adapter=new ArrayAdapter<String>(TarifActivity.this,android.R.layout.simple_list_item_1,getArrayjml);
+        jmlijz.setAdapter(jml_adapter);
+        jmlITN.setAdapter(jml_adapter);
+
+        jmlijz.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                switch (position){
+                    case 0:
+                        h_ijasah.setText("Rp. "+((Integer.parseInt(getArrayjml[position]))*500)+",00");
+                        break;
+                    case 1:
+                        h_ijasah.setText("Rp. "+((Integer.parseInt(getArrayjml[position]))*500)+",00");
+                        break;
+                    case 2:
+                        h_ijasah.setText("Rp. "+((Integer.parseInt(getArrayjml[position]))*500)+",00");
+                        break;
+                    case 3:
+                        h_ijasah.setText("Rp. "+((Integer.parseInt(getArrayjml[position]))*500)+",00");
+                        break;
+                    case 4:
+                        h_ijasah.setText("Rp. "+((Integer.parseInt(getArrayjml[position]))*500)+",00");
+                        break;
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        jmlITN.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                switch (position){
+                    case 0:
+                        h_trankskrip.setText("Rp. "+((Integer.parseInt(getArrayjml[position]))*500)+",00");
+                        break;
+                    case 1:
+                        h_trankskrip.setText("Rp. "+((Integer.parseInt(getArrayjml[position]))*500)+",00");
+                        break;
+                    case 2:
+                        h_trankskrip.setText("Rp. "+((Integer.parseInt(getArrayjml[position]))*500)+",00");
+                        break;
+                    case 3:
+                        h_trankskrip.setText("Rp. "+((Integer.parseInt(getArrayjml[position]))*500)+",00");
+                        break;
+                    case 4:
+                        h_trankskrip.setText("Rp. "+((Integer.parseInt(getArrayjml[position]))*500)+",00");
+                        break;
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 //        nama_alumni.setText("Indiana Jones");
 //
 //        getCost("Yogyakarta","Denpasar","1700","jne");
@@ -397,10 +470,8 @@ public class TarifActivity extends AppCompatActivity {
                     ItemCost itemCost = response.body();
 
                     if (statuscode == 200) {
-                        Bundle bundle = getIntent().getExtras();
-                        String priceijazah = bundle.getString("hargaIjazah");
-                        String pricetrans = bundle.getString("hargaTrans");
-                        final int total_harga= Integer.parseInt(priceijazah) + Integer.parseInt(pricetrans);
+
+                        final int total_harga= data1 + data2;
                         getProvinceValue =province.getText().toString();
                         getCityValue =city.getText().toString();
                         getAddressValue =almt_compl.getText().toString();
