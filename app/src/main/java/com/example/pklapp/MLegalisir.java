@@ -87,6 +87,5 @@ public class MLegalisir extends AppCompatActivity {
         });
     }
 
-    @Override
-    public void onClick
+
 }

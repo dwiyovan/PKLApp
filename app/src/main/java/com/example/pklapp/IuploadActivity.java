@@ -23,7 +23,7 @@ public class IuploadActivity extends AppCompatActivity{
 
     Uri uri;
 
-    public static final String PDF_UPLOAD_HTTP_URL = "http://androidblog.esy.es/AndroidJSon/file_upload.php";
+    public static final String PDF_UPLOAD_HTTP_URL = "http://10.22.254.217/legalisir/ijazah_upload.php";
 
     public int PDF_REQ_CODE = 1;
 
