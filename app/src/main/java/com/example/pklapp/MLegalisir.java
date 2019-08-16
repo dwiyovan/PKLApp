@@ -32,13 +32,14 @@ public class MLegalisir extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_m_legalisir);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Menu Legalisir");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
 
-        setContentView(R.layout.activity_m_legalisir);
+
         imgStatusIjazah = findViewById(R.id.imgsIjazah);
         statusIjazah = findViewById(R.id.statusIjazah);
         statusTN = findViewById(R.id.statusTN);
@@ -46,6 +47,14 @@ public class MLegalisir extends AppCompatActivity {
         bUploadIjazah = findViewById(R.id.bIjazah);
         bUploadTN= findViewById(R.id.bTN);
         getIjazah();
+        getTranskripNilai();
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         bUploadIjazah.setOnClickListener(new View.OnClickListener() {
             @Override
