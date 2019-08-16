@@ -7,9 +7,11 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import net.gotev.uploadservice.MultipartUploadRequest;
 import net.gotev.uploadservice.UploadNotificationConfig;
@@ -19,7 +21,7 @@ public class TuploadActivity extends AppCompatActivity{
 
     Button SelectButton, UploadButton;
 
-    EditText PdfNameEditText ;
+    TextView PdfNameEditText ;
 
     Uri uri;
 
@@ -36,9 +38,14 @@ public class TuploadActivity extends AppCompatActivity{
 
         AllowRunTimePermission();
 
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Upload Berkas Transkrip Nilai");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         SelectButton = (Button) findViewById(R.id.button);
         UploadButton = (Button) findViewById(R.id.button2);
-        PdfNameEditText = (EditText) findViewById(R.id.editText);
+        PdfNameEditText = (TextView) findViewById(R.id.editText);
 
         SelectButton.setOnClickListener(new View.OnClickListener() {
             @Override
