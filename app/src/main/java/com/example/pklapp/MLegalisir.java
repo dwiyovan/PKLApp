@@ -41,11 +41,13 @@ public class MLegalisir extends AppCompatActivity {
 
 
         imgStatusIjazah = findViewById(R.id.imgsIjazah);
+        imgStatusTN= findViewById(R.id.imgsTN);
         statusIjazah = findViewById(R.id.statusIjazah);
         statusTN = findViewById(R.id.statusTN);
         bPengiriman = findViewById(R.id.bPengiriman);
         bUploadIjazah = findViewById(R.id.bIjazah);
         bUploadTN= findViewById(R.id.bTN);
+
         getIjazah();
         getTranskripNilai();
 
@@ -67,6 +69,13 @@ public class MLegalisir extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MLegalisir.this, TuploadActivity.class);
+                startActivity(intent);
+            }
+        });
+        bPengiriman.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MLegalisir.this, TarifActivity.class);
                 startActivity(intent);
             }
         });
