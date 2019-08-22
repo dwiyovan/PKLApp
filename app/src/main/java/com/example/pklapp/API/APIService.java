@@ -41,7 +41,7 @@ public interface APIService {
            @Field("total_berat") int berat,
            @Field("ongkos_kirim") int ongkir,
            @Field("total_harga") int total_harga,
-           @Field("total_bayar") int total_bayar,
+           @Field("total_pembayaran") int total_bayar,
            @Field("provinsi") String provinsi,
            @Field("kota") String kota,
            @Field("jalan") String jalan,

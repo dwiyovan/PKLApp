@@ -74,7 +74,8 @@ public class TarifActivity extends AppCompatActivity {
     private List<com.example.pklapp.Model.City.Result> ListCity = new ArrayList<com.example.pklapp.Model.City.Result>();
 
     int totalweight,data1,data2;
-    String getProvinceValue,getCityValue,getAddressValue;
+    String getPos1,getPos2;
+    String getProvinceValue,getCityValue,getAddressValue,getJasaPengirim;
     String[] getArrayjml;
     ArrayAdapter<String> jml_adapter;
 
@@ -86,7 +87,7 @@ public class TarifActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Tarif");
+        getSupportActionBar().setTitle("Pemesanan");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
 
@@ -103,10 +104,9 @@ public class TarifActivity extends AppCompatActivity {
 //        Bundle bundle = getIntent().getExtras();
 
 
-        //data1=harga ijazah, data2=harga transkrip
-         data1=(Integer.parseInt(jmlijz.getSelectedItem().toString()))*500;
-         data2=(Integer.parseInt(jmlITN.getSelectedItem().toString()))*300;
-        totalweight = (Integer.parseInt(jmlijz.getSelectedItem().toString())+Integer.parseInt(jmlITN.getSelectedItem().toString()))* 80;
+
+
+
 
         getArrayjml=getResources().getStringArray(R.array.jml);
 
@@ -174,6 +174,10 @@ public class TarifActivity extends AppCompatActivity {
 
             }
         });
+        //get total weight
+
+
+
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -188,6 +192,7 @@ public class TarifActivity extends AppCompatActivity {
         province.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d("list", "onClick: tes");
                 AlertDialogProvince(province, city);
 
             }
@@ -213,9 +218,21 @@ public class TarifActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String parseweight = String.valueOf(totalweight);
 
-                getCost("255", city.getTag().toString(), parseweight, jasaP.getSelectedItem().toString());
+                getPos1=jmlijz.getSelectedItem().toString();
+                getPos2=jmlITN.getSelectedItem().toString();
+                data1=Integer.valueOf(getPos1);
+                data2=Integer.valueOf(getPos2);
+                totalweight = (data1+data2)*80;
+                getJasaPengirim=jasaP.getSelectedItem().toString();
+
+                Log.d("cek", "weight: "+totalweight);
+
+                try{
+                getCost("256", city.getTag().toString(), String.valueOf(totalweight), getJasaPengirim);}
+                catch (NullPointerException r){
+                    r.printStackTrace();
+                }
 
 
 
@@ -224,6 +241,7 @@ public class TarifActivity extends AppCompatActivity {
 
 
     }
+
 
 
     public void getProvince() {
@@ -517,7 +535,7 @@ public class TarifActivity extends AppCompatActivity {
 
                         asal.setText(resultasal);
                         tujuan.setText(resulttujuan);
-                        alamat.setText(almt_compl.getText().toString());
+                        alamat.setText(getAddressValue);
                         agen.setText(resultagen);
                         ongkir.setText("Rp." + resultongkir);
                         total_bayar.setText("Rp" + totalbayar);
@@ -560,7 +578,7 @@ public class TarifActivity extends AppCompatActivity {
 
     }
 
-    private void saveTransaction(final String id_pemesan, final Integer berat, final int ongkir,
+    private void saveTransaction(final String id_pemesan, final int berat, final int ongkir,
                                  final int total_harga, final int total_bayar, final String provinsi,
                                  final String kota, final String jalan, final String kode_pos) {
 
@@ -572,19 +590,21 @@ public class TarifActivity extends AppCompatActivity {
 
         APIService apiService = retrofit.create(APIService.class);
         Call<InsertResponse> call = apiService.savetransaction(id_pemesan, berat, ongkir, total_harga, total_bayar, provinsi, kota, jalan, kode_pos);
+        Log.d("tes call", "saveTransaction: "+id_pemesan+" and "+berat+" and "+ongkir+" and "+total_harga+" and "+ total_bayar+" and "+ provinsi+" and "+ kota+" and "+ jalan+" and "+ kode_pos);
 
         call.enqueue(new Callback<InsertResponse>() {
             @Override
             public void onResponse(Call<InsertResponse> call, Response<InsertResponse> response) {
-                Boolean success=response.body().getSuccess();
-                Log.d("ppppp", "2");
-                if(success) {
-                    Log.v("tes","mysql");
-                    Toast.makeText(TarifActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT);
+                if (response.isSuccessful() && response.body() != null) {
+                    Boolean success = response.body().getSuccess();
+                    Log.d("ppppp", "2");
+                    if (success) {
+                        Log.v("tes", "mysql");
+                        Toast.makeText(TarifActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT);
 
-                }
-                else{
-                    Toast.makeText(TarifActivity.this,response.body().getMessage(),Toast.LENGTH_SHORT);
+                    } else {
+                        Toast.makeText(TarifActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT);
+                    }
                 }
             }
 
@@ -592,8 +612,9 @@ public class TarifActivity extends AppCompatActivity {
             public void onFailure(@NonNull Call<InsertResponse> call, @NonNull Throwable t) {
                 Log.d("ppppp", "error");
                 Log.d("ppppp", t.getMessage());
+//                Log.d("ppppp", t.);
 
-//                Toast.makeText(TarifActivity.this,t.getLocalizedMessage(),Toast.LENGTH_SHORT);
+                Toast.makeText(TarifActivity.this,t.getLocalizedMessage(),Toast.LENGTH_SHORT);
 
             }
         });

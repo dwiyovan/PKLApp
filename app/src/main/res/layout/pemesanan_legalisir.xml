@@ -257,7 +257,7 @@
                 android:textSize="12sp" />
         </LinearLayout>
         <Spinner
-            android:id="@+id/spPengiriman"
+            android:id="@+id/spinnerJ"
             android:entries="@array/jasa_kirim"
             android:layout_width="80dp"
             android:layout_height="30dp"
@@ -271,7 +271,7 @@
             />
     </RelativeLayout>
         <Button
-            android:id="@+id/bPengiriman"
+            android:id="@+id/b_proses"
             android:layout_below="@+id/vkurir"
             android:layout_width="match_parent"
             android:layout_height="35dp"
