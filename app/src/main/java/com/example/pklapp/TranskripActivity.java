@@ -18,6 +18,7 @@ import android.util.Base64;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
@@ -37,6 +38,8 @@ import java.util.Map;
 import javax.net.ssl.HttpsURLConnection;
 
 public class TranskripActivity extends AppCompatActivity {
+
+
 
     Button GetImageFromGalleryButton, UploadImageOnServerButton;
 
@@ -82,6 +85,7 @@ public class TranskripActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transkrip);
+
 
         GetImageFromGalleryButton = (Button)findViewById(R.id.buttonSelect);
 

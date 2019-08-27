@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import net.gotev.uploadservice.MultipartUploadRequest;
@@ -46,6 +47,7 @@ public class UploadBuktiActivity extends AppCompatActivity implements View.OnCli
 
     //Uri to store the image uri
     private Uri filePath;
+    private TextView statusBT;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +62,8 @@ public class UploadBuktiActivity extends AppCompatActivity implements View.OnCli
         buttonUpload = (Button) findViewById(R.id.buttonUpload);
         //imageView = (ImageView) findViewById(R.id.imageView);
         //editText = (EditText) findViewById(R.id.editTextName);
+
+        statusBT = (TextView) findViewById(R.id.statusBTransfer);
 
         //Setting clicklistener
         buttonSelect.setOnClickListener(this);
