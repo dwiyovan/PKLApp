@@ -114,13 +114,14 @@
             android:textSize="12sp"
             android:textStyle="bold"
             android:background="@drawable/b_grey"/>
+
         <TextView
             android:id="@+id/statusBTransfer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/belum_upload"
-            android:textColor="@color/red"/>
+            android:textColor="@color/red" />
 
 </LinearLayout>
 

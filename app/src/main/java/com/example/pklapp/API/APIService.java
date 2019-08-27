@@ -6,6 +6,8 @@ import com.example.pklapp.Model.InsertResponse;
 import com.example.pklapp.Model.Province.ItemProvince;
 import com.example.pklapp.Model.legalisir.Ijazah;
 import com.example.pklapp.Model.legalisir.TranskripNilai;
+import com.example.pklapp.Model.legalisir.Transaksi;
+
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -60,5 +62,13 @@ public interface APIService {
             @Query("key2") String parameter
     );
 
+    @GET("transaksi")
+    Call<Transaksi> getStatusTransaksi(
+            @Query("key3") String parameter
+    );
+    @GET("totalPembayaran")
+    Call<Transaksi> getTotalPembayaran(
+            @Query("key4") String parameter
+    );
 }
 
