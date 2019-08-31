@@ -16,6 +16,13 @@
     <string name="ditolak">Berkas Ditolak</string>
     <string name="diterima">Berkas Diterima</string>
 
+    <string name="title_activity_tes_awal">tesAwal</string>
+
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_activity_m_legalisir">mLegalisir</string>
+    <string name="fakultas_ekonomi_bisnis"><![CDATA[FAKULTAS EKONOMI & BISNIS]]></string>
     <string-array name="jml">
         <item>0</item>
         <item>5</item>
@@ -23,15 +30,8 @@
         <item>15</item>
         <item>20</item>
     </string-array>
-
     <string-array name="jasa_kirim">
         <item>jne</item>
         <item>tiki</item>
     </string-array>
-    <string name="title_activity_tes_awal">tesAwal</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
-    <string name="title_activity_m_legalisir">mLegalisir</string>
-    <string name="fakultas_ekonomi_bisnis"><![CDATA[FAKULTAS EKONOMI & BISNIS]]></string>
 </resources>

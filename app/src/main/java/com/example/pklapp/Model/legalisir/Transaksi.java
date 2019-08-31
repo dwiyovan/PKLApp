@@ -22,7 +22,7 @@ public class Transaksi {
     @SerializedName("total_harga")
     @Expose
     private String totalHarga;
-    @SerializedName("total_Pembayaran")
+    @SerializedName("total_pembayaran")
     @Expose
     private String totalPembayaran;
     @SerializedName("provinsi")
@@ -63,17 +63,13 @@ public class Transaksi {
     private String estimasiPengiriman;
     @SerializedName("nomor_resi")
     @Expose
-    private String nomorResi;
-
-
-
-    public String getIdPemesan() {
-        return idPemesan;
-    }
-
-    public void setIdPemesan(String idPemesan) {
-        this.idPemesan = idPemesan;
-    }
+    private Object nomorResi;
+    @SerializedName("id_status")
+    @Expose
+    private String idStatus;
+    @SerializedName("keterangan_status")
+    @Expose
+    private String keteranganStatus;
 
     public String getIdTransaksi() {
         return idTransaksi;
@@ -83,12 +79,116 @@ public class Transaksi {
         this.idTransaksi = idTransaksi;
     }
 
+    public String getIdPemesan() {
+        return idPemesan;
+    }
+
+    public void setIdPemesan(String idPemesan) {
+        this.idPemesan = idPemesan;
+    }
+
+    public String getTanggalTransaksi() {
+        return tanggalTransaksi;
+    }
+
+    public void setTanggalTransaksi(String tanggalTransaksi) {
+        this.tanggalTransaksi = tanggalTransaksi;
+    }
+
+    public String getTotalBerat() {
+        return totalBerat;
+    }
+
+    public void setTotalBerat(String totalBerat) {
+        this.totalBerat = totalBerat;
+    }
+
+    public String getOngkosKirim() {
+        return ongkosKirim;
+    }
+
+    public void setOngkosKirim(String ongkosKirim) {
+        this.ongkosKirim = ongkosKirim;
+    }
+
     public String getTotalHarga() {
         return totalHarga;
     }
 
-    public void getTotalHarga(String totalHarga) {
+    public void setTotalHarga(String totalHarga) {
         this.totalHarga = totalHarga;
+    }
+
+    public String getTotalPembayaran() {
+        return totalPembayaran;
+    }
+
+    public void setTotalPembayaran(String totalPembayaran) {
+        this.totalPembayaran = totalPembayaran;
+    }
+
+    public String getProvinsi() {
+        return provinsi;
+    }
+
+    public void setProvinsi(String provinsi) {
+        this.provinsi = provinsi;
+    }
+
+    public String getKota() {
+        return kota;
+    }
+
+    public void setKota(String kota) {
+        this.kota = kota;
+    }
+
+    public String getJalan() {
+        return jalan;
+    }
+
+    public void setJalan(String jalan) {
+        this.jalan = jalan;
+    }
+
+    public String getKodePos() {
+        return kodePos;
+    }
+
+    public void setKodePos(String kodePos) {
+        this.kodePos = kodePos;
+    }
+
+    public String getTanggalTransfer() {
+        return tanggalTransfer;
+    }
+
+    public void setTanggalTransfer(String tanggalTransfer) {
+        this.tanggalTransfer = tanggalTransfer;
+    }
+
+    public String getJamTransfer() {
+        return jamTransfer;
+    }
+
+    public void setJamTransfer(String jamTransfer) {
+        this.jamTransfer = jamTransfer;
+    }
+
+    public String getJumlahTransfer() {
+        return jumlahTransfer;
+    }
+
+    public void setJumlahTransfer(String jumlahTransfer) {
+        this.jumlahTransfer = jumlahTransfer;
+    }
+
+    public String getBank() {
+        return bank;
+    }
+
+    public void setBank(String bank) {
+        this.bank = bank;
     }
 
     public String getBuktiTransfer() {
@@ -99,6 +199,14 @@ public class Transaksi {
         this.buktiTransfer = buktiTransfer;
     }
 
+    public String getLayananPengiriman() {
+        return layananPengiriman;
+    }
+
+    public void setLayananPengiriman(String layananPengiriman) {
+        this.layananPengiriman = layananPengiriman;
+    }
+
     public String getStatusPesanan() {
         return statusPesanan;
     }
@@ -107,11 +215,36 @@ public class Transaksi {
         this.statusPesanan = statusPesanan;
     }
 
-    public String getCatatan() {
+    public String getEstimasiPengiriman() {
+        return estimasiPengiriman;
+    }
+
+    public void setEstimasiPengiriman(String estimasiPengiriman) {
+        this.estimasiPengiriman = estimasiPengiriman;
+    }
+
+    public Object getNomorResi() {
         return nomorResi;
     }
 
-    public void setCatatan(String nomorResi) { this.nomorResi = nomorResi;
+    public void setNomorResi(Object nomorResi) {
+        this.nomorResi = nomorResi;
+    }
+
+    public String getIdStatus() {
+        return idStatus;
+    }
+
+    public void setIdStatus(String idStatus) {
+        this.idStatus = idStatus;
+    }
+
+    public String getKeteranganStatus() {
+        return keteranganStatus;
+    }
+
+    public void setKeteranganStatus(String keteranganStatus) {
+        this.keteranganStatus = keteranganStatus;
     }
 
 }

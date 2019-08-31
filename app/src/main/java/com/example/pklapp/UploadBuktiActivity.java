@@ -13,12 +13,24 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.pklapp.API.APIService;
+import com.example.pklapp.API.APIUrl;
+import com.example.pklapp.Model.legalisir.Transaksi;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 import net.gotev.uploadservice.MultipartUploadRequest;
 import net.gotev.uploadservice.UploadNotificationConfig;
@@ -35,6 +47,8 @@ public class UploadBuktiActivity extends AppCompatActivity implements View.OnCli
     private Button buttonUpload;
     //private ImageView imageView;
     //private EditText editText;
+    private TextView vStatusPemesanan;
+    private TextView vtotalPembayaran;
 
     //Image request code
     private int PICK_IMAGE_REQUEST = 1;
@@ -54,6 +68,17 @@ public class UploadBuktiActivity extends AppCompatActivity implements View.OnCli
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_uploadbukti);
 
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Transfer");
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
+
+        getStatusPemesanan();
+        getTotalPembayaran();
+
+        vStatusPemesanan = findViewById(R.id.statusPengiriman);
+        vtotalPembayaran = findViewById(R.id.vTotalbayar);
+
         //Requesting storage permission
         requestStoragePermission();
 
@@ -68,6 +93,13 @@ public class UploadBuktiActivity extends AppCompatActivity implements View.OnCli
         //Setting clicklistener
         buttonSelect.setOnClickListener(this);
         buttonUpload.setOnClickListener(this);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
 
@@ -188,5 +220,44 @@ public class UploadBuktiActivity extends AppCompatActivity implements View.OnCli
         }
     }
 
+
+    public void getStatusPemesanan(){
+        Retrofit retrofit=new Retrofit.Builder().baseUrl(APIUrl.URL_ACCESS2).addConverterFactory(GsonConverterFactory.create()).build();
+        APIService service=retrofit.create(APIService.class);
+        Call<Transaksi> call = service.getStatusTransaksi("1201907020002");
+        call.enqueue(new Callback<Transaksi>() {
+            @Override
+            public void onResponse(Call<Transaksi> call, Response<Transaksi> response) {
+                Transaksi statusPemesanan= response.body();
+                vStatusPemesanan.setText(statusPemesanan.getKeteranganStatus());
+               // Log.d("asu", "  "+response.body());
+            }
+
+            @Override
+            public void onFailure(Call<Transaksi> call, Throwable t) {
+
+            }
+        });
+    }
+
+    public void getTotalPembayaran(){
+        Retrofit retrofit=new Retrofit.Builder().baseUrl(APIUrl.URL_ACCESS2).addConverterFactory(GsonConverterFactory.create()).build();
+        APIService service=retrofit.create(APIService.class);
+        Call<Transaksi> call = service.getStatusTransaksi("1201907020002");
+        call.enqueue(new Callback<Transaksi>() {
+            @Override
+            public void onResponse(Call<Transaksi> call, Response<Transaksi> response) {
+                Transaksi totalPembayaran= response.body();
+                vtotalPembayaran.setText(totalPembayaran.getTotalPembayaran());
+                Log.d("asu", "  "+response.body());
+
+            }
+
+            @Override
+            public void onFailure(Call<Transaksi> call, Throwable t) {
+                //Log.d("asu", "onFailure: "+t.getMessage());
+            }
+        });
+    }
 
 }

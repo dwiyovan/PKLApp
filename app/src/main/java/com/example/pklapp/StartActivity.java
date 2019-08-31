@@ -47,7 +47,7 @@ public class StartActivity extends AppCompatActivity {
                     @Override
                     public void onSpanClicked(String text) {
 
-                        startActivity(new Intent(StartActivity.this, MLegalisir.class));
+                        startActivity(new Intent(StartActivity.this, UploadBuktiActivity.class));
 
                     }
                 }).into(txt);

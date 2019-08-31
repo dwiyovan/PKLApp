@@ -9,6 +9,8 @@ import com.example.pklapp.Model.legalisir.TranskripNilai;
 import com.example.pklapp.Model.legalisir.Transaksi;
 
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -66,9 +68,10 @@ public interface APIService {
     Call<Transaksi> getStatusTransaksi(
             @Query("key3") String parameter
     );
-    @GET("totalPembayaran")
-    Call<Transaksi> getTotalPembayaran(
-            @Query("key4") String parameter
+    @GET("transaksi")
+    Call<List<Transaksi>> getStatusTransaksiAll(
+
     );
+
 }
 
