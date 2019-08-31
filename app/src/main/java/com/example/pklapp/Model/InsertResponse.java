@@ -6,6 +6,9 @@ import com.google.gson.annotations.SerializedName;
 public class InsertResponse {
 
 
+    @SerializedName("id_transaksi")
+    @Expose
+    private String idTransaksi;
         @SerializedName("success")
         @Expose
         private Boolean success;
@@ -29,4 +32,7 @@ public class InsertResponse {
             this.message = message;
         }
 
+        public String getIdTransaksi() {
+            return idTransaksi;
+        }
 }

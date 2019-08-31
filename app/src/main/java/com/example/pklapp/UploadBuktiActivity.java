@@ -72,9 +72,23 @@ public class UploadBuktiActivity extends AppCompatActivity implements View.OnCli
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Transfer");
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
+        if (getIntent().getExtras()!=null){
+            Bundle b = getIntent().getExtras();
+            String id = b.getString("id_transaksi");
+            id= id.replaceAll("\\s+", "");
+            Log.d("asu", "onCreate: "+id);
+            getStatusPemesanan(id);
+            getTotalPembayaran(id);
 
-        getStatusPemesanan();
-        getTotalPembayaran();
+        }else{
+            String id =getIntent().getStringExtra("id_transaksi");
+            id= id.replaceAll("\\s+", "");
+            getStatusPemesanan(id);
+
+            Log.d("asu", "onCreate: "+id);
+        getTotalPembayaran(id);
+
+        }
 
         vStatusPemesanan = findViewById(R.id.statusPengiriman);
         vtotalPembayaran = findViewById(R.id.vTotalbayar);
@@ -88,7 +102,7 @@ public class UploadBuktiActivity extends AppCompatActivity implements View.OnCli
         //imageView = (ImageView) findViewById(R.id.imageView);
         //editText = (EditText) findViewById(R.id.editTextName);
 
-        statusBT = (TextView) findViewById(R.id.statusBTransfer);
+        //statusBT = (TextView) findViewById(R.id.statusBTransfer);
 
         //Setting clicklistener
         buttonSelect.setOnClickListener(this);
@@ -221,29 +235,31 @@ public class UploadBuktiActivity extends AppCompatActivity implements View.OnCli
     }
 
 
-    public void getStatusPemesanan(){
+    public void getStatusPemesanan(String id){
         Retrofit retrofit=new Retrofit.Builder().baseUrl(APIUrl.URL_ACCESS2).addConverterFactory(GsonConverterFactory.create()).build();
         APIService service=retrofit.create(APIService.class);
-        Call<Transaksi> call = service.getStatusTransaksi("1201907020002");
+        Call<Transaksi> call = service.getStatusTransaksi("1201907020013");
         call.enqueue(new Callback<Transaksi>() {
             @Override
             public void onResponse(Call<Transaksi> call, Response<Transaksi> response) {
                 Transaksi statusPemesanan= response.body();
                 vStatusPemesanan.setText(statusPemesanan.getKeteranganStatus());
-               // Log.d("asu", "  "+response.body());
+
+                Log.d("asu", "  "+response.body());
             }
 
             @Override
             public void onFailure(Call<Transaksi> call, Throwable t) {
+                Log.d("asu", "  "+t.getMessage());
 
             }
         });
     }
 
-    public void getTotalPembayaran(){
+    public void getTotalPembayaran(String id){
         Retrofit retrofit=new Retrofit.Builder().baseUrl(APIUrl.URL_ACCESS2).addConverterFactory(GsonConverterFactory.create()).build();
         APIService service=retrofit.create(APIService.class);
-        Call<Transaksi> call = service.getStatusTransaksi("1201907020002");
+        Call<Transaksi> call = service.getStatusTransaksi("1201907020013");
         call.enqueue(new Callback<Transaksi>() {
             @Override
             public void onResponse(Call<Transaksi> call, Response<Transaksi> response) {
@@ -256,6 +272,8 @@ public class UploadBuktiActivity extends AppCompatActivity implements View.OnCli
             @Override
             public void onFailure(Call<Transaksi> call, Throwable t) {
                 //Log.d("asu", "onFailure: "+t.getMessage());
+                Log.d("asu", "  "+t.getMessage());
+
             }
         });
     }

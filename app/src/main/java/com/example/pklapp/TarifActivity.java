@@ -547,7 +547,8 @@ public class TarifActivity extends AppCompatActivity {
                                         getProvinceValue,getCityValue,getAddressValue,postal_code);
 //                                Log.d("ppppp", "tes data: "+totalweight+" and "+totalbayar+" and "+province.getText()+
 //                                        " and "+city.getText()+" and "+almt_compl.getText()+" and "+postal_code);
-//                                startActivity(new Intent(TarifActivity.this,StartActivity.class));
+
+
                             }
                         });
 
@@ -601,7 +602,11 @@ public class TarifActivity extends AppCompatActivity {
                     if (success) {
                         Log.v("tes", "mysql");
                         Toast.makeText(TarifActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT);
-
+                        Intent i = new Intent(TarifActivity.this, UploadBuktiActivity.class);
+                        i.putExtra("id_transaksi",response.body().getIdTransaksi());
+                        startActivity(new Intent(TarifActivity.this,UploadBuktiActivity.class));
+                        startActivity(i);
+                        finish();
                     } else {
                         Toast.makeText(TarifActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT);
                     }

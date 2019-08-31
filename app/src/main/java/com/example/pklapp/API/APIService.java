@@ -54,21 +54,21 @@ public interface APIService {
 
 
 
-    @GET("ijazah")
+    @GET("ijazah.php")
     Call<Ijazah> getStatusIjazah(
             @Query("key") String parameter
     );
 
-    @GET("transkripNilai")
+    @GET("transkripNilai.php")
     Call<TranskripNilai> getStatusTranksripNilai(
-            @Query("key2") String parameter
+            @Query("key") String parameter
     );
 
-    @GET("transaksi")
+    @GET("transaksi.php")
     Call<Transaksi> getStatusTransaksi(
-            @Query("key3") String parameter
+            @Query("key") String parameter
     );
-    @GET("transaksi")
+    @GET("transaksi.php")
     Call<List<Transaksi>> getStatusTransaksiAll(
 
     );
