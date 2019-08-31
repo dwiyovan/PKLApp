@@ -40,7 +40,7 @@ import java.util.UUID;
 
 public class UploadBuktiActivity extends AppCompatActivity implements View.OnClickListener {
 
-    public static final String UPLOAD_URL = "http://192.168.1.6/legalisir/bukti-transfer_upload.php";
+    public static final String UPLOAD_URL = "http://192.168.137.54/legalisir/bukti-transfer_upload.php";
 
     //Declaring views
     private Button buttonSelect;
@@ -123,7 +123,7 @@ public class UploadBuktiActivity extends AppCompatActivity implements View.OnCli
      * */
     public void uploadMultipart() {
         //getting name for the image
-        String name = "NIM_BuktiTransfer";//editText.getText().toString().trim();
+        String name = "1201907070020_BuktiTransfer";//editText.getText().toString().trim();
 
         //getting the actual path of the image
         String path = getPath(filePath);
