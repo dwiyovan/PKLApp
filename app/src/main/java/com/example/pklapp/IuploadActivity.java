@@ -9,27 +9,37 @@ import android.net.Uri;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.graphics.Color;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.app.DatePickerDialog;
+import android.graphics.drawable.ColorDrawable;
+import android.util.Log;
+import android.widget.DatePicker;
 import net.gotev.uploadservice.MultipartUploadRequest;
 import net.gotev.uploadservice.UploadNotificationConfig;
 import java.util.UUID;
+import java.util.Calendar;
 
 public class IuploadActivity extends AppCompatActivity{
 
+    private DatePickerDialog.OnDateSetListener mDateSetListener;
+
     Button SelectButton, UploadButton;
 
-    TextView PdfNameEditText ;
+    TextView PdfNameEditText, mDisplayDate ;
+
+    EditText PdfIdEditText;
 
     Uri uri;
 
-    public static final String PDF_UPLOAD_HTTP_URL = "http://192.168.1.6/legalisir/ijazah_upload.php";
+    public static final String PDF_UPLOAD_HTTP_URL = "http://192.168.1.2/legalisir/ijazah_upload.php";
 
     public int PDF_REQ_CODE = 1;
 
-    String PdfNameHolder, PdfPathHolder, PdfID;
+    String PdfNameHolder, PdfIdHolder, PdfPathHolder, PdfID, NIMHolder, DateHolder, date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +63,37 @@ public class IuploadActivity extends AppCompatActivity{
         SelectButton = (Button) findViewById(R.id.button);
         UploadButton = (Button) findViewById(R.id.button2);
         PdfNameEditText = (TextView) findViewById(R.id.editText);
+        PdfIdEditText = (EditText) findViewById(R.id.nomorijazah);
+        mDisplayDate = (TextView) findViewById(R.id.dateText);
+
+        mDisplayDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar cal = Calendar.getInstance();
+                int year = cal.get(Calendar.YEAR);
+                int month = cal.get(Calendar.MONTH);
+                int day = cal.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog dialog = new DatePickerDialog(
+                        IuploadActivity.this,
+                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                        mDateSetListener,
+                        year,month,day);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.show();
+            }
+        });
+
+        mDateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                month = month + 1;
+                //Log.d("IuploadActivity", "onDateSet: mm/dd/yyy: " + month + "/" + day + "/" + year);
+
+                date = month + "/" + day + "/" + year;
+                mDisplayDate.setText(date);
+            }
+        };
 
         SelectButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,7 +145,13 @@ public class IuploadActivity extends AppCompatActivity{
 
         PdfNameHolder = PdfNameEditText.getText().toString().trim();
 
+        PdfIdHolder = PdfIdEditText.getText().toString().trim();
+
         PdfPathHolder = FilePath.getPath(this, uri);
+
+        NIMHolder = "165150200111163";
+
+        DateHolder = date;
 
         if (PdfPathHolder == null) {
 
@@ -119,6 +166,9 @@ public class IuploadActivity extends AppCompatActivity{
                 new MultipartUploadRequest(this, PdfID, PDF_UPLOAD_HTTP_URL)
                         .addFileToUpload(PdfPathHolder, "pdf")
                         .addParameter("name", PdfNameHolder)
+                        .addParameter("id", PdfIdHolder)
+                        .addParameter("nim", NIMHolder)
+                        .addParameter("date", DateHolder)
                         .setNotificationConfig(new UploadNotificationConfig())
                         .setMaxRetries(5)
                         .startUpload();

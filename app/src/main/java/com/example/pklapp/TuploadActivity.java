@@ -25,11 +25,11 @@ public class TuploadActivity extends AppCompatActivity{
 
     Uri uri;
 
-    public static final String PDF_UPLOAD_HTTP_URL = "http://192.168.1.6/legalisir/transkrip_upload.php";
+    public static final String PDF_UPLOAD_HTTP_URL = "http://192.168.1.2/legalisir/transkrip_upload.php";
 
     public int PDF_REQ_CODE = 1;
 
-    String PdfNameHolder, PdfPathHolder, PdfID;
+    String PdfNameHolder, PdfPathHolder, PdfID, NIMHolder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,7 +95,7 @@ public class TuploadActivity extends AppCompatActivity{
 
             SelectButton.setText("PDF is Selected");
 
-            PdfNameEditText.setText("NIM_Ijazah");
+            PdfNameEditText.setText("NIM_Transkrip");
         }
     }
 
@@ -105,6 +105,8 @@ public class TuploadActivity extends AppCompatActivity{
         PdfNameHolder = PdfNameEditText.getText().toString().trim();
 
         PdfPathHolder = FilePath.getPath(this, uri);
+
+        NIMHolder = "165150200111163";
 
         if (PdfPathHolder == null) {
 
@@ -119,6 +121,7 @@ public class TuploadActivity extends AppCompatActivity{
                 new MultipartUploadRequest(this, PdfID, PDF_UPLOAD_HTTP_URL)
                         .addFileToUpload(PdfPathHolder, "pdf")
                         .addParameter("name", PdfNameHolder)
+                        .addParameter("nim", NIMHolder)
                         .setNotificationConfig(new UploadNotificationConfig())
                         .setMaxRetries(5)
                         .startUpload();
