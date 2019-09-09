@@ -34,7 +34,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="5dp"
-                android:text="Legalisir Transkrip Nilai"
+                android:text="Legalisir Ijazah"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="14sp"
                 android:textStyle="bold" />

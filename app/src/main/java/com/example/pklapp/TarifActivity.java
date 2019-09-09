@@ -73,7 +73,7 @@ public class TarifActivity extends AppCompatActivity {
 
     private List<com.example.pklapp.Model.City.Result> ListCity = new ArrayList<com.example.pklapp.Model.City.Result>();
 
-    int totalweight,data1,data2;
+    int totalweight,data1,data2,totalbayar,total_harga;
     String getPos1,getPos2;
     String getProvinceValue,getCityValue,getAddressValue,getJasaPengirim;
     String[] getArrayjml;
@@ -217,30 +217,39 @@ public class TarifActivity extends AppCompatActivity {
         b_proses.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String provincetujuan = province.getText().toString();
+                String citytujuan = city.getText().toString();
+                String addresscompl = almt_compl.getText().toString();
+                if (provincetujuan.equals("")) {
+                    province.setError("Silahkan pilih provinsi tujuan");
+                } else if (citytujuan.equals("")) {
+                    city.setError("Silahkan pilih kota tujuan");
+                } else if (addresscompl.equals("")) {
+                    almt_compl.setError("Silahkan isi alamat lengkap tujuan");
 
+                } else {
 
-                getPos1=jmlijz.getSelectedItem().toString();
-                getPos2=jmlITN.getSelectedItem().toString();
-                data1=Integer.valueOf(getPos1);
-                data2=Integer.valueOf(getPos2);
-                totalweight = (data1+data2)*80;
-                getJasaPengirim=jasaP.getSelectedItem().toString();
+                    getPos1 = jmlijz.getSelectedItem().toString();
+                    getPos2 = jmlITN.getSelectedItem().toString();
+                    data1 = Integer.valueOf(getPos1);
+                    data2 = Integer.valueOf(getPos2);
+                    totalweight = (data1 + data2) * 80;
+                    getJasaPengirim = jasaP.getSelectedItem().toString();
 
-                Log.d("cek", "weight: "+totalweight);
+                    Log.d("cek", "weight: " + totalweight);
 
-                try{
-                getCost("256", city.getTag().toString(), String.valueOf(totalweight), getJasaPengirim);}
-                catch (NullPointerException r){
-                    r.printStackTrace();
+                    getCost("256", city.getTag().toString(), String.valueOf(totalweight), getJasaPengirim);
                 }
 
 
-
             }
+
+
         });
 
 
     }
+
 
 
 
@@ -489,7 +498,7 @@ public class TarifActivity extends AppCompatActivity {
 
                     if (statuscode == 200) {
 
-                        final int total_harga= data1 + data2;
+                        total_harga= (data1*500) + (data2*500);
                         getProvinceValue =province.getText().toString();
                         getCityValue =city.getText().toString();
                         getAddressValue =almt_compl.getText().toString();
@@ -498,7 +507,7 @@ public class TarifActivity extends AppCompatActivity {
                         Button fix_pesan;
 
                         String resultasal = itemCost.getRajaongkir().getOriginDetails().getCity_name() + " (" + response.body().getRajaongkir().
-                                getDestinationDetails().getPostal_code() + ")";
+                                getOriginDetails().getPostal_code() + ")";
 
 
                         String resulttujuan = itemCost.getRajaongkir().getDestinationDetails().getCity_name() + "(" + response.body().getRajaongkir().
@@ -512,7 +521,7 @@ public class TarifActivity extends AppCompatActivity {
 
                         String resultlamakirim = response.body().getRajaongkir().getResults().get(0).getCosts().get(0).getCost().get(0).getEtd() + "";
 
-                        final int totalbayar=(total_harga+resultongkir);
+                        totalbayar=total_harga+resultongkir;
                         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                         View alertlayout = inflater.inflate(R.layout.detail_pembayaran, null);
                         alert = new AlertDialog.Builder(TarifActivity.this);
@@ -547,6 +556,7 @@ public class TarifActivity extends AppCompatActivity {
                                         getProvinceValue,getCityValue,getAddressValue,postal_code);
 //                                Log.d("ppppp", "tes data: "+totalweight+" and "+totalbayar+" and "+province.getText()+
 //                                        " and "+city.getText()+" and "+almt_compl.getText()+" and "+postal_code);
+                                startActivity(new Intent(TarifActivity.this,UploadBuktiActivity.class));
 
 
                             }
