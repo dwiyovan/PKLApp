@@ -25,7 +25,7 @@ public class TuploadActivity extends AppCompatActivity{
 
     Uri uri;
 
-    public static final String PDF_UPLOAD_HTTP_URL = "http://192.168.1.2/legalisir/transkrip_upload.php";
+    public static final String PDF_UPLOAD_HTTP_URL = "http://192.168.43.78/legalisir/transkrip_upload.php";
 
     public int PDF_REQ_CODE = 1;
 
@@ -75,7 +75,7 @@ public class TuploadActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
 
-                PdfUploadFunction();
+        PdfUploadFunction();
 
 
             }
@@ -96,6 +96,10 @@ public class TuploadActivity extends AppCompatActivity{
             SelectButton.setText("PDF is Selected");
 
             PdfNameEditText.setText("NIM_Transkrip");
+
+            Toast.makeText(this, "Berkas Telah Diproses", Toast.LENGTH_LONG).show();
+
+            startActivity(new Intent(TuploadActivity.this, MLegalisir.class));
         }
     }
 

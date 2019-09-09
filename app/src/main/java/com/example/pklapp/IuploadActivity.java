@@ -35,7 +35,7 @@ public class IuploadActivity extends AppCompatActivity{
 
     Uri uri;
 
-    public static final String PDF_UPLOAD_HTTP_URL = "http://192.168.1.2/legalisir/ijazah_upload.php";
+    public static final String PDF_UPLOAD_HTTP_URL = "http://192.168.43.78/legalisir/ijazah_upload.php";
 
     public int PDF_REQ_CODE = 1;
 
@@ -116,6 +116,7 @@ public class IuploadActivity extends AppCompatActivity{
             @Override
             public void onClick(View view) {
 
+
                 PdfUploadFunction();
 
 
@@ -137,6 +138,10 @@ public class IuploadActivity extends AppCompatActivity{
             SelectButton.setText("PDF is Selected");
 
             PdfNameEditText.setText("NIM_Ijazah");
+
+            Toast.makeText(this, "Berkas Telah Diproses", Toast.LENGTH_LONG).show();
+
+            startActivity(new Intent(IuploadActivity.this, MLegalisir.class));
         }
     }
 
