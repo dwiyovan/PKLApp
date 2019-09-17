@@ -49,22 +49,25 @@ public interface APIService {
            @Field("provinsi") String provinsi,
            @Field("kota") String kota,
            @Field("jalan") String jalan,
-           @Field("kode_pos") String kode_pos
+           @Field("kode_pos") String kode_pos,
+           @Field("layanan_pengiriman") String service,
+           @Field("status_pesanan") String status,
+           @Field("estimasi_pengiriman") String etd
     );
 
 
 
-    @GET("ijazah.php")
+    @GET("Ijazah.php")
     Call<Ijazah> getStatusIjazah(
             @Query("key") String parameter
     );
 
-    @GET("transkripNilai.php")
+    @GET("transkrip_nilai.php")
     Call<TranskripNilai> getStatusTranksripNilai(
             @Query("key") String parameter
     );
 
-    @GET("transaksi.php")
+    @GET("Transaksi.php")
     Call<Transaksi> getStatusTransaksi(
             @Query("key") String parameter
     );
