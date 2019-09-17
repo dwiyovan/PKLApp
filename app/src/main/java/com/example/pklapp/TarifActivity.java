@@ -518,6 +518,8 @@ public class TarifActivity extends AppCompatActivity {
                         String resultagen = response.body().getRajaongkir().getResults().get(0).getCosts().get(0).getDescription() + "(" +
                                 response.body().getRajaongkir().getResults().get(0).getName() + ")";
                         final String postal_code=response.body().getRajaongkir().getDestinationDetails().getPostal_code();
+                        final String service=response.body().getRajaongkir().getResults().get(0).getCosts().get(0).getService();
+                        final String etd=response.body().getRajaongkir().getResults().get(0).getCosts().get(0).getCost().get(0).getEtd();
 
                         String resultlamakirim = response.body().getRajaongkir().getResults().get(0).getCosts().get(0).getCost().get(0).getEtd() + "";
 
@@ -553,14 +555,18 @@ public class TarifActivity extends AppCompatActivity {
                             @Override
                             public void onClick(View v) {
                                 saveTransaction("6757686",totalweight,resultongkir,total_harga,totalbayar,
-                                        getProvinceValue,getCityValue,getAddressValue,postal_code);
+                                        getProvinceValue,getCityValue,getAddressValue,postal_code,service,"7",etd);
+
+
+
 //                                Log.d("ppppp", "tes data: "+totalweight+" and "+totalbayar+" and "+province.getText()+
 //                                        " and "+city.getText()+" and "+almt_compl.getText()+" and "+postal_code);
-                                startActivity(new Intent(TarifActivity.this,UploadBuktiActivity.class));
+//                                startActivity(new Intent(TarifActivity.this,UploadBuktiActivity.class));
 
 
                             }
                         });
+
 
 
                         province.setText("");
@@ -591,7 +597,8 @@ public class TarifActivity extends AppCompatActivity {
 
     private void saveTransaction(final String id_pemesan, final int berat, final int ongkir,
                                  final int total_harga, final int total_bayar, final String provinsi,
-                                 final String kota, final String jalan, final String kode_pos) {
+                                 final String kota, final String jalan, final String kode_pos, final String service,
+                                 final String status, final String etd) {
 
         Log.d("ppppp", "1 ");
         Gson gson = new GsonBuilder()
@@ -600,8 +607,9 @@ public class TarifActivity extends AppCompatActivity {
         Retrofit retrofit = new Retrofit.Builder().baseUrl(APIUrl.URL_ACCESSLegalisir).addConverterFactory(GsonConverterFactory.create(gson)).build();
 
         APIService apiService = retrofit.create(APIService.class);
-        Call<InsertResponse> call = apiService.savetransaction(id_pemesan, berat, ongkir, total_harga, total_bayar, provinsi, kota, jalan, kode_pos);
-        Log.d("tes call", "saveTransaction: "+id_pemesan+" and "+berat+" and "+ongkir+" and "+total_harga+" and "+ total_bayar+" and "+ provinsi+" and "+ kota+" and "+ jalan+" and "+ kode_pos);
+        Call<InsertResponse> call = apiService.savetransaction(id_pemesan, berat, ongkir, total_harga, total_bayar, provinsi, kota, jalan, kode_pos,service,status,etd);
+        Log.d("tes call", "saveTransaction: "+id_pemesan+" and "+berat+" and "+ongkir+" and "+total_harga+" and "+ total_bayar+" and "+ provinsi+" and "+ kota+" and "+ jalan+" and "+ kode_pos+" and "+service
+                +" and "+status+" and "+etd);
 
         call.enqueue(new Callback<InsertResponse>() {
             @Override
@@ -614,9 +622,12 @@ public class TarifActivity extends AppCompatActivity {
                         Toast.makeText(TarifActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT);
                         Intent i = new Intent(TarifActivity.this, UploadBuktiActivity.class);
                         i.putExtra("id_transaksi",response.body().getIdTransaksi());
+                        Log.d("cek response", "onResponse: "+response.body().getIdTransaksi());
                         startActivity(new Intent(TarifActivity.this,UploadBuktiActivity.class));
                         startActivity(i);
                         finish();
+                        alertDialog.dismiss();
+
                     } else {
                         Toast.makeText(TarifActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT);
                     }
@@ -626,7 +637,7 @@ public class TarifActivity extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Call<InsertResponse> call, @NonNull Throwable t) {
                 Log.d("ppppp", "error");
-                Log.d("ppppp", t.getMessage());
+//                Log.d("ppppp", t.getMessage());
 //                Log.d("ppppp", t.);
 
                 Toast.makeText(TarifActivity.this,t.getLocalizedMessage(),Toast.LENGTH_SHORT);
@@ -634,4 +645,5 @@ public class TarifActivity extends AppCompatActivity {
             }
         });
     }
+
 }
