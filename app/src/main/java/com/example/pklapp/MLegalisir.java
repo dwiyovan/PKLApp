@@ -1,9 +1,13 @@
 package com.example.pklapp;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -20,7 +24,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class MLegalisir extends AppCompatActivity {
+public class MLegalisir extends AppCompatActivity{
     private Button bUploadIjazah;
     private Button bUploadTN;
     private Button bPengiriman;
@@ -33,6 +37,11 @@ public class MLegalisir extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_m_legalisir);
+
+        BottomNavigationView navbot=findViewById(R.id.simplefragment);
+        navbot.setOnNavigationItemSelectedListener(navlistener);
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new FragmentMLegalisir()).commit();
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -48,8 +57,9 @@ public class MLegalisir extends AppCompatActivity {
         bUploadIjazah = findViewById(R.id.bIjazah);
         bUploadTN= findViewById(R.id.bTN);
 
-        getIjazah();
-        getTranskripNilai();
+
+
+        navbot.setOnNavigationItemSelectedListener(navlistener);
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,76 +68,26 @@ public class MLegalisir extends AppCompatActivity {
             }
         });
 
-        bUploadIjazah.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MLegalisir.this, IuploadActivity.class);
-                startActivity(intent);
-            }
-        });
-        bUploadTN.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MLegalisir.this, TuploadActivity.class);
-                startActivity(intent);
-            }
-        });
-        bPengiriman.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MLegalisir.this, TarifActivity.class);
-                startActivity(intent);
-            }
-        });
+
     }
+    private BottomNavigationView.OnNavigationItemSelectedListener navlistener= new BottomNavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+            Fragment selectfragment=null;
 
-    public void getIjazah(){
-        Retrofit retrofit=new Retrofit.Builder().baseUrl(APIUrl.URL_ACCESS2).addConverterFactory(GsonConverterFactory.create()).build();
-        APIService service=retrofit.create(APIService.class);
-        Call<Ijazah> call=service.getStatusIjazah("165152052631");
-        call.enqueue(new Callback<Ijazah>() {
-            @Override
-            public void onResponse(Call<Ijazah> call, Response<Ijazah> response) {
-                Ijazah ijazah = response.body();
-                if (ijazah.getValidasi().equalsIgnoreCase("terima")){
-                    imgStatusIjazah.setImageResource(R.drawable.ic_check_circle_black_24dp);
-
-                }else{
-                    imgStatusIjazah.setImageResource(R.drawable.ic_failure_24dp);
-                }
-                statusIjazah.setText(ijazah.getValidasi());
-//                Log.d("asu", "  "+response.body());
+            switch (menuItem.getItemId()){
+                case R.id.upload_berkas:
+                    selectfragment=new FragmentMLegalisir();
+                    break;
+                case R.id.history:
+                    selectfragment=new HistoryActivity();
+                    break;
             }
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,selectfragment).commit();
+            return true;
+        }
+    };
 
-            @Override
-            public void onFailure(Call<Ijazah> call, Throwable t) {
 
-            }
-        });
-    }
-    public void getTranskripNilai(){
-        Retrofit retrofit=new Retrofit.Builder().baseUrl(APIUrl.URL_ACCESS2).addConverterFactory(GsonConverterFactory.create()).build();
-        APIService service=retrofit.create(APIService.class);
-        Call<TranskripNilai> call=service.getStatusTranksripNilai("165152052631");
-        call.enqueue(new Callback<TranskripNilai>() {
-            @Override
-            public void onResponse(Call<TranskripNilai> call, Response<TranskripNilai> response) {
-                TranskripNilai transkripNilai = response.body();
-                if (transkripNilai.getValidasi().equalsIgnoreCase("terima")){
-                    imgStatusTN.setImageResource(R.drawable.ic_check_circle_black_24dp);
-
-                }else{
-                    imgStatusTN.setImageResource(R.drawable.ic_failure_24dp);
-                }
-                statusTN.setText(transkripNilai.getValidasi());
-//                Log.d("asu", "  "+response.body());
-            }
-
-            @Override
-            public void onFailure(Call<TranskripNilai> call, Throwable t) {
-
-            }
-        });
-    }
 
 }

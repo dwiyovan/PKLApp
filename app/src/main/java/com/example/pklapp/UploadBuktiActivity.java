@@ -3,11 +3,13 @@ package com.example.pklapp;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -36,11 +38,16 @@ import net.gotev.uploadservice.MultipartUploadRequest;
 import net.gotev.uploadservice.UploadNotificationConfig;
 
 import java.io.IOException;
+import java.lang.ref.PhantomReference;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 import java.util.UUID;
 
 public class UploadBuktiActivity extends AppCompatActivity implements View.OnClickListener {
 
-    public static final String UPLOAD_URL = "http://192.168.0.106/legalisir/bukti-transfer_upload.php";
+    public static final String UPLOAD_URL = "http://192.168.1.11/legalisir/bukti-transfer_upload.php";
 
     //Declaring views
     private Button buttonSelect;
@@ -68,9 +75,12 @@ public class UploadBuktiActivity extends AppCompatActivity implements View.OnCli
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_uploadbukti);
 
+        String currdate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Transfer");
+
 //        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
         if (getIntent().getExtras()!=null){
             Bundle b = getIntent().getExtras();
@@ -79,6 +89,11 @@ public class UploadBuktiActivity extends AppCompatActivity implements View.OnCli
             Log.d("", "onCreate: "+id);
             getStatusPemesanan(id);
             getTotalPembayaran(id);
+            SharedPreferences prefs= PreferenceManager.getDefaultSharedPreferences(this);
+            SharedPreferences.Editor editor=prefs.edit();
+            editor.putString("id_statuspesan",id);
+            editor.putString("tglpesan",currdate);
+            editor.apply();
 
         }else{
             String id =getIntent().getStringExtra("id_transaksi");
@@ -244,6 +259,10 @@ public class UploadBuktiActivity extends AppCompatActivity implements View.OnCli
             public void onResponse(Call<Transaksi> call, Response<Transaksi> response) {
                 Transaksi statusPemesanan= response.body();
                 vStatusPemesanan.setText(statusPemesanan.getKeteranganStatus());
+                SharedPreferences prefs= PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                SharedPreferences.Editor editor=prefs.edit();
+               editor.putString("statuspesan",vStatusPemesanan.getText().toString());
+               editor.commit();
 
                 Log.d("", "  "+response.body());
             }

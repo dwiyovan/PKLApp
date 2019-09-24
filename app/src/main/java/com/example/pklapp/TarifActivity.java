@@ -555,7 +555,7 @@ public class TarifActivity extends AppCompatActivity {
                             @Override
                             public void onClick(View v) {
                                 saveTransaction("6757686",totalweight,resultongkir,total_harga,totalbayar,
-                                        getProvinceValue,getCityValue,getAddressValue,postal_code,service,"7",etd);
+                                        getProvinceValue,getCityValue,getAddressValue,postal_code,service,"5",etd);
 
 
 
