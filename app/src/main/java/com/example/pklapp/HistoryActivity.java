@@ -26,7 +26,7 @@ public class HistoryActivity extends Fragment {
 
         SharedPreferences sharedpref= PreferenceManager.getDefaultSharedPreferences(getContext());
         String statuspesan=sharedpref.getString("statuspesan","id_status");
-        String statuspesanid=sharedpref.getString("id_statuspe  san","");
+        String statuspesanid=sharedpref.getString("id_statuspesan","");
         String tglpesan=sharedpref.getString("tglpesan","");
 
         status.setText("Status pesanan   : "+"\n"+statuspesan);

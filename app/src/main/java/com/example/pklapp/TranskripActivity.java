@@ -221,7 +221,7 @@ public class TranskripActivity extends AppCompatActivity {
 
                 Toast.makeText(TranskripActivity.this,string1,Toast.LENGTH_LONG).show();
 
-                startActivity(new Intent(TranskripActivity.this, StartActivity.class));
+                startActivity(new Intent(TranskripActivity.this, MLegalisir.class));
 
             }
 

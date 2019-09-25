@@ -60,7 +60,6 @@ public class TarifActivity extends AppCompatActivity {
     private EditText searchList;
     Spinner jasaP,jmlITN,jmlijz;
     Button b_proses, b_gantiAlamat;
-    StartActivity tes = new StartActivity();
     private RequestQueue reqjson;
 
     private ListProvinceAdapter provinceAdapter;
@@ -583,7 +582,6 @@ public class TarifActivity extends AppCompatActivity {
 
 //                                Log.d("ppppp", "tes data: "+totalweight+" and "+totalbayar+" and "+province.getText()+
 //                                        " and "+city.getText()+" and "+almt_compl.getText()+" and "+postal_code);
-//                                startActivity(new Intent(TarifActivity.this,UploadBuktiActivity.class));
 
 
                             }

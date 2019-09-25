@@ -48,7 +48,7 @@ import java.util.UUID;
 public class UploadBuktiActivity extends AppCompatActivity implements View.OnClickListener {
 
     public static final String UPLOAD_URL = "http://psik.feb.ub.ac.id/legalisironline/bukti-transfer_upload.php";
-    //public static final String UPLOAD_URL = "http://192.168.43.78/legalisir/transkrip_upload.php";
+    //public static final String UPLOAD_URL = "http://192.168.43.78/legalisir/bukti-transfer_upload.php";
 
     //Declaring views
     private Button buttonSelect;
@@ -253,7 +253,7 @@ public class UploadBuktiActivity extends AppCompatActivity implements View.OnCli
         if (v == buttonUpload) {
             uploadMultipart();
             Toast.makeText(this, "Upload Berhasil", Toast.LENGTH_LONG).show();
-            startActivity(new Intent(UploadBuktiActivity.this, StartActivity.class));
+            startActivity(new Intent(UploadBuktiActivity.this, MLegalisir.class));
         }
     }
 
