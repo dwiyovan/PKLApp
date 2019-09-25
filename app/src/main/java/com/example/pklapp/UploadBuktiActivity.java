@@ -48,6 +48,7 @@ import java.util.UUID;
 public class UploadBuktiActivity extends AppCompatActivity implements View.OnClickListener {
 
     public static final String UPLOAD_URL = "http://psik.feb.ub.ac.id/legalisironline/bukti-transfer_upload.php";
+    //public static final String UPLOAD_URL = "http://192.168.43.78/legalisir/transkrip_upload.php";
 
     //Declaring views
     private Button buttonSelect;

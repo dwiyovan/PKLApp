@@ -36,6 +36,7 @@ public class TuploadActivity extends AppCompatActivity{
     Uri uri;
 
     public static final String PDF_UPLOAD_HTTP_URL = "http://psik.feb.ub.ac.id/legalisironline/transkrip_upload.php";
+    //public static final String PDF_UPLOAD_HTTP_URL = "http://192.168.43.78/legalisir/transkrip_upload.php";
 
     public int PDF_REQ_CODE = 1;
 

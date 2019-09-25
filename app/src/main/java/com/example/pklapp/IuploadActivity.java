@@ -36,6 +36,7 @@ public class IuploadActivity extends AppCompatActivity{
     Uri uri;
 
     public static final String PDF_UPLOAD_HTTP_URL = "http://psik.feb.ub.ac.id/legalisironline/ijazah_upload.php";
+    //public static final String PDF_UPLOAD_HTTP_URL = "http://192.168.43.78/legalisir/ijazah_upload.php";
 
     public int PDF_REQ_CODE = 1;
 
@@ -119,6 +120,8 @@ public class IuploadActivity extends AppCompatActivity{
 
             PdfUploadFunction();
 
+            startActivity(new Intent(IuploadActivity.this, MLegalisir.class));
+
 
             }
 
@@ -141,7 +144,7 @@ public class IuploadActivity extends AppCompatActivity{
 
             Toast.makeText(this, "Berkas Telah Diproses", Toast.LENGTH_LONG).show();
 
-            startActivity(new Intent(IuploadActivity.this, MLegalisir.class));
+
         }
     }
 
