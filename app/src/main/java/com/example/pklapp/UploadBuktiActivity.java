@@ -47,7 +47,7 @@ import java.util.UUID;
 
 public class UploadBuktiActivity extends AppCompatActivity implements View.OnClickListener {
 
-    public static final String UPLOAD_URL = "http://psik.feb.ub.ac.id/legalisironline/";
+    public static final String UPLOAD_URL = "http://psik.feb.ub.ac.id/legalisironline/bukti-transfer_upload.php";
 
     //Declaring views
     private Button buttonSelect;
@@ -137,10 +137,14 @@ public class UploadBuktiActivity extends AppCompatActivity implements View.OnCli
      * We need the full image path and the name for the image in this method
      * */
     public void uploadMultipart() {
-        //getting name for the image
-        String name = "1201907070020_BuktiTransfer";//editText.getText().toString().trim();
 
-        //getting the actual path of the image
+
+        //getting nim Shared Preference harusnya
+        String NIMHolder = "165150200111163";
+        //getting name for the file
+        String name = NIMHolder+"_BuktiTransfer";//editText.getText().toString().trim();
+
+        //getting the actual path of file
         String path = getPath(filePath);
 
         //Uploading code
@@ -151,6 +155,7 @@ public class UploadBuktiActivity extends AppCompatActivity implements View.OnCli
             new MultipartUploadRequest(this, uploadId, UPLOAD_URL)
                     .addFileToUpload(path, "image") //Adding file
                     .addParameter("name", name) //Adding text parameter to the request
+                    .addParameter("nim", NIMHolder)
                     .setNotificationConfig(new UploadNotificationConfig())
                     .setMaxRetries(5)
                     .startUpload(); //Starting the upload
@@ -246,8 +251,8 @@ public class UploadBuktiActivity extends AppCompatActivity implements View.OnCli
         }
         if (v == buttonUpload) {
             uploadMultipart();
-            Toast.makeText(this, "Upload berhasil", Toast.LENGTH_LONG).show();
-            startActivity(new Intent(UploadBuktiActivity.this,StartActivity.class));
+            Toast.makeText(this, "Upload Berhasil", Toast.LENGTH_LONG).show();
+            startActivity(new Intent(UploadBuktiActivity.this, StartActivity.class));
         }
     }
 

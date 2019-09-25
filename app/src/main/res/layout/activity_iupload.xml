@@ -43,6 +43,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:hint="Select Date"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:padding="20dp"
             />
 

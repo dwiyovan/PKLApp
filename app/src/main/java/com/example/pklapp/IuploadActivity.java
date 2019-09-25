@@ -35,7 +35,7 @@ public class IuploadActivity extends AppCompatActivity{
 
     Uri uri;
 
-    public static final String PDF_UPLOAD_HTTP_URL = "http://192.168.43.78/legalisir/ijazah_upload.php";
+    public static final String PDF_UPLOAD_HTTP_URL = "http://psik.feb.ub.ac.id/legalisironline/ijazah_upload.php";
 
     public int PDF_REQ_CODE = 1;
 
@@ -117,7 +117,7 @@ public class IuploadActivity extends AppCompatActivity{
             public void onClick(View view) {
 
 
-                PdfUploadFunction();
+            PdfUploadFunction();
 
 
             }
@@ -137,7 +137,7 @@ public class IuploadActivity extends AppCompatActivity{
 
             SelectButton.setText("PDF is Selected");
 
-            PdfNameEditText.setText("NIM_Ijazah");
+            PdfNameEditText.setText(NIMHolder+"_Ijazah");
 
             Toast.makeText(this, "Berkas Telah Diproses", Toast.LENGTH_LONG).show();
 
@@ -162,7 +162,12 @@ public class IuploadActivity extends AppCompatActivity{
 
             Toast.makeText(this, "Please move your PDF file to internal storage & try again.", Toast.LENGTH_LONG).show();
 
-        } else {
+        }else if (PdfIdHolder.equals("")){
+            PdfIdEditText.setError("Silahkan Masukkan Nomor Ijazah");
+        }else if(DateHolder.equals("")){
+            mDisplayDate.setError("Silahkan Pilih Tanggal Ijazah");
+        }
+        else {
 
             try {
 
