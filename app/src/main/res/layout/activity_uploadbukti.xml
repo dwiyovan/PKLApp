@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".UploadBuktiActivity"
-    android:orientation="vertical">
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
     <include
         android:id="@+id/toolbar"
         layout="@layout/bar_layout"
@@ -46,14 +50,14 @@
             android:gravity="end" />
     </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/vnorek"
         android:layout_below="@id/vtotal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="30dp"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:padding="30dp">
         <TextView
+            android:id="@+id/textperingatan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TRANSFER SESUAI TOTAL PEMBAYARAN PADA NOMER REKENING BERIKUT"
@@ -62,6 +66,8 @@
             android:textColor="@color/colorPrimaryDark"
             android:padding="10dp"/>
         <LinearLayout
+            android:id="@+id/layoutTransfer"
+            android:layout_below="@+id/textperingatan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/border_biru"
@@ -69,6 +75,7 @@
             android:padding="15dp"
             >
             <TextView
+                android:id="@+id/norek"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -78,6 +85,7 @@
                 android:textSize="16sp"
                 android:textStyle="bold"/>
             <TextView
+                android:id="@+id/fakultas"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -97,6 +105,8 @@
                 android:textStyle="bold"/>
         </LinearLayout>
         <TextView
+            android:id="@+id/peringatan2"
+            android:layout_below="@+id/layoutTransfer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -107,17 +117,20 @@
             android:textColor="@color/colorPrimaryDark"
             android:padding="10dp"/>
         <Button
+            android:layout_below="@+id/peringatan2"
             android:id="@+id/buttonSelect"
             android:layout_width="80dp"
             android:layout_height="30dp"
-            android:layout_gravity="center"
+            android:layout_centerHorizontal="true"
             android:layout_margin="5dp"
             android:text="Select"
             android:textSize="12sp"
             android:textStyle="bold"
             android:background="@drawable/b_grey"/>
         <Button
+            android:layout_below="@+id/buttonSelect"
             android:id="@+id/buttonUpload"
+            android:layout_centerHorizontal="true"
             android:layout_width="80dp"
             android:layout_height="30dp"
             android:layout_gravity="center"
@@ -128,14 +141,14 @@
             android:background="@drawable/b_grey"
             android:elevation="5dp"/>
 
-    </LinearLayout>
+    </RelativeLayout>
 
     <RelativeLayout
+        android:layout_below="@+id/vnorek"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/light_grey"
         android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
         android:layout_marginHorizontal="40dp"
         android:layout_marginBottom="40dp"
         android:padding="20dp"
@@ -159,5 +172,5 @@
             android:textAlignment="center"
             android:textColor="@color/red"/>
     </RelativeLayout>
-
-</RelativeLayout>
+    </RelativeLayout>
+</ScrollView>

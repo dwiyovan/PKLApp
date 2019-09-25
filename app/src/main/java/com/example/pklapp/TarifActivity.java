@@ -9,9 +9,11 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.InputFilter;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -248,6 +250,26 @@ public class TarifActivity extends AppCompatActivity {
         });
 
 
+        province.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                int test=province.getInputType();
+                province.setInputType(InputType.TYPE_NULL);
+                province.onTouchEvent(motionEvent);
+                province.setInputType(test);
+                return true;
+            }
+        });
+        city.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                int test=city.getInputType();
+                city.setInputType(InputType.TYPE_NULL);
+                city.onTouchEvent(motionEvent);
+                city.setInputType(test);
+                return true;
+            }
+        });
     }
 
 
@@ -555,7 +577,7 @@ public class TarifActivity extends AppCompatActivity {
                             @Override
                             public void onClick(View v) {
                                 saveTransaction("6757686",totalweight,resultongkir,total_harga,totalbayar,
-                                        getProvinceValue,getCityValue,getAddressValue,postal_code,service,"7",etd);
+                                        getProvinceValue,getCityValue,getAddressValue,postal_code,service,"5",etd);
 
 
 
