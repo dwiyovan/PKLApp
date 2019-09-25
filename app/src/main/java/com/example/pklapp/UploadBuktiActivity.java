@@ -47,7 +47,7 @@ import java.util.UUID;
 
 public class UploadBuktiActivity extends AppCompatActivity implements View.OnClickListener {
 
-    public static final String UPLOAD_URL = "http://192.168.1.11/legalisir/bukti-transfer_upload.php";
+    public static final String UPLOAD_URL = "http://psik.feb.ub.ac.id/legalisironline/";
 
     //Declaring views
     private Button buttonSelect;
@@ -75,7 +75,7 @@ public class UploadBuktiActivity extends AppCompatActivity implements View.OnCli
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_uploadbukti);
 
-        String currdate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+        String currdate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -246,6 +246,8 @@ public class UploadBuktiActivity extends AppCompatActivity implements View.OnCli
         }
         if (v == buttonUpload) {
             uploadMultipart();
+            Toast.makeText(this, "Upload berhasil", Toast.LENGTH_LONG).show();
+            startActivity(new Intent(UploadBuktiActivity.this,StartActivity.class));
         }
     }
 
