@@ -45,18 +45,17 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.UUID;
 
-public class UploadBuktiActivity extends AppCompatActivity implements View.OnClickListener {
+public class UploadBuktiActivity extends AppCompatActivity implements View.OnClickListener{
 
     public static final String UPLOAD_URL = "http://psik.feb.ub.ac.id/legalisironline/bukti-transfer_upload.php";
-    //public static final String UPLOAD_URL = "http://192.168.43.78/legalisir/bukti-transfer_upload.php";
+    //public static final String UPLOAD_URL = "http://192.168.1.3/legalisir/bukti-transfer_upload.php";
 
-    //Declaring views
+    private TextView vStatusPemesanan;
+    private TextView vtotalPembayaran;
     private Button buttonSelect;
     private Button buttonUpload;
     //private ImageView imageView;
     //private EditText editText;
-    private TextView vStatusPemesanan;
-    private TextView vtotalPembayaran;
 
     //Image request code
     private int PICK_IMAGE_REQUEST = 1;
@@ -118,18 +117,9 @@ public class UploadBuktiActivity extends AppCompatActivity implements View.OnCli
         //imageView = (ImageView) findViewById(R.id.imageView);
         //editText = (EditText) findViewById(R.id.editTextName);
 
-        //statusBT = (TextView) findViewById(R.id.statusBTransfer);
-
         //Setting clicklistener
         buttonSelect.setOnClickListener(this);
         buttonUpload.setOnClickListener(this);
-
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
     }
 
 
@@ -138,14 +128,12 @@ public class UploadBuktiActivity extends AppCompatActivity implements View.OnCli
      * We need the full image path and the name for the image in this method
      * */
     public void uploadMultipart() {
-
-
-        //getting nim Shared Preference harusnya
+        //getting name for the image
         String NIMHolder = "165150200111163";
-        //getting name for the file
-        String name = NIMHolder+"_BuktiTransfer";//editText.getText().toString().trim();
 
-        //getting the actual path of file
+        String name = NIMHolder+"_BuktiTransfer";
+
+        //getting the actual path of the image
         String path = getPath(filePath);
 
         //Uploading code
@@ -158,7 +146,7 @@ public class UploadBuktiActivity extends AppCompatActivity implements View.OnCli
                     .addParameter("name", name) //Adding text parameter to the request
                     .addParameter("nim", NIMHolder)
                     .setNotificationConfig(new UploadNotificationConfig())
-                    .setMaxRetries(5)
+                    .setMaxRetries(2)
                     .startUpload(); //Starting the upload
 
         } catch (Exception exc) {
@@ -252,7 +240,6 @@ public class UploadBuktiActivity extends AppCompatActivity implements View.OnCli
         }
         if (v == buttonUpload) {
             uploadMultipart();
-            Toast.makeText(this, "Upload Berhasil", Toast.LENGTH_LONG).show();
             startActivity(new Intent(UploadBuktiActivity.this, MLegalisir.class));
         }
     }

@@ -575,7 +575,7 @@ public class TarifActivity extends AppCompatActivity {
                         fix_pesan.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                saveTransaction("6757686",totalweight,resultongkir,total_harga,totalbayar,
+                                saveTransaction("165150200111163",totalweight,resultongkir,total_harga,totalbayar,
                                         getProvinceValue,getCityValue,getAddressValue,postal_code,service,"5",etd);
 
 
