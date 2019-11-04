@@ -36,7 +36,7 @@ public class IuploadActivity extends AppCompatActivity{
     Uri uri;
 
     public static final String PDF_UPLOAD_HTTP_URL = "http://psik.feb.ub.ac.id/legalisironline/ijazah_upload.php";
-    //public static final String PDF_UPLOAD_HTTP_URL = "http://192.168.43.78/legalisir/ijazah_upload.php";
+    //public static final String PDF_UPLOAD_HTTP_URL = "http://192.168.1.3/legalisir/ijazah_upload.php";
 
     public int PDF_REQ_CODE = 1;
 
@@ -140,6 +140,8 @@ public class IuploadActivity extends AppCompatActivity{
 
             SelectButton.setText("PDF is Selected");
 
+            NIMHolder = "165150200111164";
+
             PdfNameEditText.setText(NIMHolder+"_Ijazah");
 
             Toast.makeText(this, "Berkas Telah Diproses", Toast.LENGTH_LONG).show();
@@ -157,7 +159,7 @@ public class IuploadActivity extends AppCompatActivity{
 
         PdfPathHolder = FilePath.getPath(this, uri);
 
-        NIMHolder = "165150200111163";
+        NIMHolder = "165150200111164";
 
         DateHolder = date;
 
